@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   m_SortingLayers:
   - name: background
     uniqueID: 102220077
+    locked: 0
+  - name: Collider_layer
+    uniqueID: 2933366795
     locked: 0
   - name: Default
     uniqueID: 0
