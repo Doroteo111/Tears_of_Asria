@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // LAYERS
+    /*// LAYERS
     [SerializeField] private LayerMask groundLayerMask;
 
     //VARIABLES
@@ -66,6 +66,73 @@ public class Player : MonoBehaviour
                            0f, Vector2.down, 1f, groundLayerMask);
       return raycastHit2d.collider != null; // = true si A chocado con algo que es suelo
     
+    }
+    */
+
+    // LAYERS
+    [SerializeField] private LayerMask groundLayerMask;
+
+    //VARIABLES
+    private float horizontalInput;
+    public float moveSpeed = 10f;
+    public float jumpSpeed = 8f;
+
+    private bool isOnTheGround;
+
+    //REFERENCE
+    private Rigidbody2D _rigidbody2D;
+    private CapsuleCollider2D _capsuleCollider2D;
+    
+
+    private void Awake()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        _capsuleCollider2D = GetComponentInChildren<CapsuleCollider2D>();
+    }
+
+    private void Update()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+
+        isOnTheGround = IsOnTheGround();
+
+        if (Input.GetKeyDown(KeyCode.Space) && IsOnTheGround()) //añadir bool
+        {
+            _rigidbody2D.velocity = Vector2.up * jumpSpeed;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        _rigidbody2D.velocity = new Vector2(moveSpeed * horizontalInput, _rigidbody2D.velocity.y);
+    }
+
+    private bool IsOnTheGround() //busacar Physics2D.Raycast en la info de unity
+    {
+        float extraHeightTest = 0.05f; //
+
+        RaycastHit2D raycastHit2D = Physics2D.Raycast(_capsuleCollider2D.bounds.center, Vector2.down, _capsuleCollider2D.bounds.extents.y
+            + extraHeightTest, groundLayerMask);   // (origen rayo)centro del collider, dirección , distancia (la mitad de la altura)
+
+        /* bool isOntheGround = raycastHit2D.collider != null; // si = true si A chocado con algo que es suelo
+
+         Color rayColor = isOntheGround ? Color.green : Color.red;
+         if (isOntheGround)
+         {
+             rayColor = Color.green;
+
+         }
+         else
+         {
+             rayColor= Color.red;
+         }
+
+         Debug.DrawRay(boxCollider2D.bounds.center, Vector2.down*(boxCollider2D.bounds.extents.y + extraHeightTest), rayColor);
+         return isOntheGround; */
+
+        return raycastHit2D.collider != null; //si = true si A chocado con algo que es suelo
     }
 }
 
