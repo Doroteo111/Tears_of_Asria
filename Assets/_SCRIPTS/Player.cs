@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    #region OLD CODE
     /*// LAYERS
     [SerializeField] private LayerMask groundLayerMask;
 
@@ -68,6 +69,7 @@ public class Player : MonoBehaviour
     
     }
     */
+    #endregion
 
     // LAYERS
     [SerializeField] private LayerMask groundLayerMask;
@@ -81,15 +83,16 @@ public class Player : MonoBehaviour
 
     //REFERENCE
     private Rigidbody2D _rigidbody2D;
-    private CapsuleCollider2D _capsuleCollider2D;
+   // private CapsuleCollider2D _capsuleCollider2D;
+    private BoxCollider2D _boxCollider2D;
     
 
-    private void Awake()
+    private void Awake()  //Set all the reference
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        _capsuleCollider2D = GetComponentInChildren<CapsuleCollider2D>();
+        _boxCollider2D = GetComponentInChildren<BoxCollider2D>();
     }
 
     private void Update()
@@ -98,7 +101,7 @@ public class Player : MonoBehaviour
 
         isOnTheGround = IsOnTheGround();
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsOnTheGround()) //añadir bool
+        if (Input.GetKeyDown(KeyCode.Space) && IsOnTheGround()) //if you press space key + the player is touching the ground = can jump
         {
             _rigidbody2D.velocity = Vector2.up * jumpSpeed;
         }
@@ -113,7 +116,7 @@ public class Player : MonoBehaviour
     {
         float extraHeightTest = 0.05f; //
 
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(_capsuleCollider2D.bounds.center, Vector2.down, _capsuleCollider2D.bounds.extents.y
+        RaycastHit2D raycastHit2D = Physics2D.Raycast(_boxCollider2D.bounds.center, Vector2.down, _boxCollider2D.bounds.extents.y
             + extraHeightTest, groundLayerMask);   // (origen rayo)centro del collider, dirección , distancia (la mitad de la altura)
 
         /* bool isOntheGround = raycastHit2D.collider != null; // si = true si A chocado con algo que es suelo
