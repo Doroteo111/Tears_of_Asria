@@ -76,14 +76,13 @@ public class Player : MonoBehaviour
 
     //VARIABLES
     private float horizontalInput;
-    public float moveSpeed = 10f;
-    public float jumpSpeed = 8f;
+    public float moveSpeed = 5f;
+    public float jumpSpeed = 7f;
 
     private bool isOnTheGround;
 
     //REFERENCE
     private Rigidbody2D _rigidbody2D;
-   // private CapsuleCollider2D _capsuleCollider2D;
     private BoxCollider2D _boxCollider2D;
     
 
@@ -91,7 +90,6 @@ public class Player : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
-
         _boxCollider2D = GetComponentInChildren<BoxCollider2D>();
     }
 
@@ -105,37 +103,49 @@ public class Player : MonoBehaviour
         {
             _rigidbody2D.velocity = Vector2.up * jumpSpeed;
         }
-    }
 
+        HandleMovement();
+    }
+    private void LateUpdate()
+    {
+        //Set animations
+        if (IsOnTheGround())
+        {
+            
+        }
+    }
     private void FixedUpdate()
     {
-        _rigidbody2D.velocity = new Vector2(moveSpeed * horizontalInput, _rigidbody2D.velocity.y);
+        //_rigidbody2D.velocity = new Vector2(moveSpeed * horizontalInput, _rigidbody2D.velocity.y);  //movment w horizontal input
+
     }
 
-    private bool IsOnTheGround() //busacar Physics2D.Raycast en la info de unity
+    private void HandleMovement()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            _rigidbody2D.velocity=new Vector2 (-moveSpeed, _rigidbody2D.velocity.y);
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.D))
+            {
+                _rigidbody2D.velocity = new Vector2(+moveSpeed, _rigidbody2D.velocity.y);
+            } else {
+                //no keys pressed
+                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+            }
+        }
+    }
+    private bool IsOnTheGround() // code momkey en vez de linea usa una caja para que si nos encontramos al borde borde de la plataforma nos detecta suelo
     {
         float extraHeightTest = 0.05f; //
 
         RaycastHit2D raycastHit2D = Physics2D.Raycast(_boxCollider2D.bounds.center, Vector2.down, _boxCollider2D.bounds.extents.y
             + extraHeightTest, groundLayerMask);   // (origen rayo)centro del collider, dirección , distancia (la mitad de la altura)
 
-        /* bool isOntheGround = raycastHit2D.collider != null; // si = true si A chocado con algo que es suelo
-
-         Color rayColor = isOntheGround ? Color.green : Color.red;
-         if (isOntheGround)
-         {
-             rayColor = Color.green;
-
-         }
-         else
-         {
-             rayColor= Color.red;
-         }
-
-         Debug.DrawRay(boxCollider2D.bounds.center, Vector2.down*(boxCollider2D.bounds.extents.y + extraHeightTest), rayColor);
-         return isOntheGround; */
-
         return raycastHit2D.collider != null; //si = true si A chocado con algo que es suelo
+
     }
 }
 

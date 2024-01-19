@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d89d886f7b65e7d49af350de6a6d3ac0
+guid: f64634959e4a18a4d8e5283ff27a8747
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,30 +106,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IDLE_100_0
+      name: IDLE_Lf_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 12
+        y: 14
         width: 525
-        height: 835
+        height: 833
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea037e0d4505bf641a978a1e6102d52e
-      internalID: 912976489
+      spriteID: 4bfef8571fff73a4a9c70552368c3902
+      internalID: 620252588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IDLE_100_1
+      name: IDLE_Lf_1
       rect:
         serializedVersion: 2
         x: 525
-        y: 12
+        y: 14
         width: 525
-        height: 835
+        height: 833
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 597cccc553e39e64c8ed664e2a389b20
-      internalID: 1088357082
+      spriteID: 57476ef8f854b0c45b298d0682050f38
+      internalID: -219960417
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IDLE_100_2
+      name: IDLE_Lf_2
       rect:
         serializedVersion: 2
         x: 1050
-        y: 12
+        y: 14
         width: 525
-        height: 835
+        height: 833
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ccb2bc7b681f0b4ebc2c63897ac6f01
-      internalID: -264706710
+      spriteID: 09077864912730e44a1e44d1b5ee7c91
+      internalID: -1291951738
       vertices: []
       indices: 
       edges: []
@@ -196,9 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IDLE_100_0: 912976489
-      IDLE_100_1: 1088357082
-      IDLE_100_2: -264706710
+      IDLE_Lf_0: 620252588
+      IDLE_Lf_1: -219960417
+      IDLE_Lf_2: -1291951738
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
