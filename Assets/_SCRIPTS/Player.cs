@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
     public float jumpSpeed = 7f;
 
     private bool isOnTheGround;
+    private bool facingRight = true;
 
     //REFERENCE
     private Rigidbody2D _rigidbody2D;
@@ -103,8 +104,6 @@ public class Player : MonoBehaviour
         {
             _rigidbody2D.velocity = Vector2.up * jumpSpeed;
         }
-
-        HandleMovement();
     }
     private void LateUpdate()
     {
@@ -116,27 +115,43 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //_rigidbody2D.velocity = new Vector2(moveSpeed * horizontalInput, _rigidbody2D.velocity.y);  //movment w horizontal input
-
-    }
-
-    private void HandleMovement()
-    {
+       //Handle Movment
         if (Input.GetKey(KeyCode.A))
         {
-            _rigidbody2D.velocity=new Vector2 (-moveSpeed, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(-moveSpeed, _rigidbody2D.velocity.y);
         }
         else
         {
             if (Input.GetKey(KeyCode.D))
             {
                 _rigidbody2D.velocity = new Vector2(+moveSpeed, _rigidbody2D.velocity.y);
-            } else {
+            }
+            else
+            {
                 //no keys pressed
                 _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
             }
         }
+
+        if(horizontalInput > 0 && !facingRight)
+        {
+            Flip();
+        }
+        if (horizontalInput > 0 && facingRight)
+        {
+            Flip();
+        }
     }
+    private void Flip() // flip the character
+    {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+
+        facingRight = !facingRight;
+    }
+   
+   
     private bool IsOnTheGround() // code momkey en vez de linea usa una caja para que si nos encontramos al borde borde de la plataforma nos detecta suelo
     {
         float extraHeightTest = 0.05f; //
