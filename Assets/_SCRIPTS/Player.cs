@@ -80,8 +80,7 @@ public class Player : MonoBehaviour
     public float jumpSpeed = 7f;
 
     private bool isOnTheGround;
-   // private bool facingRight = true; 
-
+  
     //REFERENCE
     private Rigidbody2D _rigidbody2D;
     private BoxCollider2D _boxCollider2D;
@@ -128,27 +127,11 @@ public class Player : MonoBehaviour
                 _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
             }
 
-            /*  if (horizontalInput > 0 && !facingRight)
-              {
-                  Flip();
-              }
-              if (horizontalInput > 0 && facingRight)
-              {
-                  Flip();
-              }*/
         }
 
 
     }
-    /*
-    private void Flip() // flip the character
-    {
-        Vector3 currentScale = gameObject.transform.localScale;
-        currentScale.x *= -1;
-        gameObject.transform.localScale = currentScale;
-
-        facingRight = !facingRight;
-    }*/
+    
 
         private bool IsOnTheGround() // en vez de linea usar una caja para que si nos encontramos al borde borde de la plataforma nos detecta suelo y podamos saltar
     {
