@@ -75,24 +75,27 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask groundLayerMask;
 
     //VARIABLES
-    private float horizontalInput;
     public float moveSpeed = 5f;
     public float jumpSpeed = 7f;
+    private float horizontalInput;
 
     private bool isOnTheGround;
-  
+    private bool isWalking;
+
     //REFERENCE
     private Rigidbody2D _rigidbody2D;
     private BoxCollider2D _boxCollider2D;
-
+    private Animator _animator;
     
 
     private void Awake()  //Set all the reference
     {
-      
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         _boxCollider2D = GetComponentInChildren<BoxCollider2D>();
+
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -107,33 +110,61 @@ public class Player : MonoBehaviour
         }
     }
    
-    private void FixedUpdate()
+    private void FixedUpdate()  //Handle Movment (code monkey)
     {
-       //Handle Movment (code monkey)
+        /*if (isWalking == true)
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                _rigidbody2D.velocity = new Vector2(-moveSpeed, _rigidbody2D.velocity.y);
+
+
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                _rigidbody2D.velocity = new Vector2(+moveSpeed, _rigidbody2D.velocity.y);
+
+            }
+
+        }
+        else
+        {
+            //no keys pressed
+            _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+        }*/
         if (Input.GetKey(KeyCode.A))
         {
             _rigidbody2D.velocity = new Vector2(-moveSpeed, _rigidbody2D.velocity.y);
+
+
         }
         else
         {
             if (Input.GetKey(KeyCode.D))
             {
                 _rigidbody2D.velocity = new Vector2(+moveSpeed, _rigidbody2D.velocity.y);
-                
+
             }
             else
             {
                 //no keys pressed
                 _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
             }
-
         }
-
-
     }
-    
 
-        private bool IsOnTheGround() // en vez de linea usar una caja para que si nos encontramos al borde borde de la plataforma nos detecta suelo y podamos saltar
+    private void LateUpdate()
+    {
+
+        _animator.SetFloat("Movment", _rigidbody2D.velocity.x); //así si se gira?????
+        _animator.SetFloat("Movment", _rigidbody2D.velocity.x);
+
+        //caminar
+        //_animator.SetBool("IsWalking", true); nnaaaaaa no funciona
+    }
+       
+    
+    private bool IsOnTheGround()  // en vez de linea usar una caja para que si nos encontramos al borde borde de la plataforma nos detecta suelo y podamos saltar
     {
         float extraHeightTest = 0.05f; //
 
@@ -141,7 +172,9 @@ public class Player : MonoBehaviour
             + extraHeightTest, groundLayerMask);   // (origen rayo)centro del collider, dirección , distancia (la mitad de la altura)
 
         return raycastHit2D.collider != null; //si = true si A chocado con algo que es suelo
-
-    }
+    } 
+       
+    
+    
 }
 

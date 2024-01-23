@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: T_IDLE_Lf2
+  m_Name: T_IDLE_Lf
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -29,7 +29,7 @@ AnimationClip:
     - time: 0.75
       value: {fileID: 620252588, guid: f64634959e4a18a4d8e5283ff27a8747, type: 3}
     attribute: m_Sprite
-    path: Thami
+    path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -41,7 +41,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1477127419
+      path: 0
       attribute: 0
       script: {fileID: 0}
       typeID: 212
