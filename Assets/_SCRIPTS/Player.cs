@@ -75,18 +75,21 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask groundLayerMask;
 
     //VARIABLES
-    public float moveSpeed = 5f;
-    public float jumpSpeed = 7f;
+    public float moveSpeed = 6f;
+    public float jumpSpeed = 10f;
     private float horizontalInput;
 
     private bool isOnTheGround;
     private bool isWalking;
+    private bool isFacing;
+
+    public Vector2 lastMovment = Vector2.zero;
 
     //REFERENCE
     private Rigidbody2D _rigidbody2D;
     private BoxCollider2D _boxCollider2D;
     private Animator _animator;
-    
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()  //Set all the reference
     {
@@ -96,11 +99,13 @@ public class Player : MonoBehaviour
         _boxCollider2D = GetComponentInChildren<BoxCollider2D>();
 
         _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxisRaw("Horizontal"); //AxisRaw for no acceleration (we move on -1 to 1)
+     
 
         isOnTheGround = IsOnTheGround();
 
@@ -109,61 +114,29 @@ public class Player : MonoBehaviour
             _rigidbody2D.velocity = Vector2.up * jumpSpeed;
         }
     }
-   
-    private void FixedUpdate()  //Handle Movment (code monkey)
+    
+    private void FixedUpdate()  //Handle Movment
     {
-        /*if (isWalking == true)
+        isWalking = _rigidbody2D.velocity.x != 0; // is walking = true when greater to 0
+        _rigidbody2D.velocity = new Vector2(horizontalInput * moveSpeed, _rigidbody2D.velocity.y);
+
+       
+        if(horizontalInput > 0 ) //flip to Left
         {
-            if (Input.GetKey(KeyCode.A))
-            {
-                _rigidbody2D.velocity = new Vector2(-moveSpeed, _rigidbody2D.velocity.y);
-
-
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                _rigidbody2D.velocity = new Vector2(+moveSpeed, _rigidbody2D.velocity.y);
-
-            }
-
-        }
-        else
+            _spriteRenderer.flipX = true;
+        } 
+        
+        if (horizontalInput < 0) //flip to Right
         {
-            //no keys pressed
-            _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-        }*/
-        if (Input.GetKey(KeyCode.A))
-        {
-            _rigidbody2D.velocity = new Vector2(-moveSpeed, _rigidbody2D.velocity.y);
-
-
-        }
-        else
-        {
-            if (Input.GetKey(KeyCode.D))
-            {
-                _rigidbody2D.velocity = new Vector2(+moveSpeed, _rigidbody2D.velocity.y);
-
-            }
-            else
-            {
-                //no keys pressed
-                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-            }
+            _spriteRenderer.flipX = false;
         }
     }
 
     private void LateUpdate()
     {
-
-        _animator.SetFloat("Movment", _rigidbody2D.velocity.x); //así si se gira?????
-        _animator.SetFloat("Movment", _rigidbody2D.velocity.x);
-
-        //caminar
-        //_animator.SetBool("IsWalking", true); nnaaaaaa no funciona
+        _animator.SetBool("IsWalking", isWalking); //walk animation
     }
        
-    
     private bool IsOnTheGround()  // en vez de linea usar una caja para que si nos encontramos al borde borde de la plataforma nos detecta suelo y podamos saltar
     {
         float extraHeightTest = 0.05f; //
