@@ -5,49 +5,53 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
+
+    //Control Panel VARIABLES
     [SerializeField] private Button controlsButton;
     [SerializeField] private Button quitControlsButton;
-
     [SerializeField] private GameObject controlsPanel;
-    private bool isOpen;
 
+    private bool isOpenPanel;
+
+    //REFERENCE
     private Animator _animator;
 
-    
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        HideControlsPanel();// When the scene starts the panels will be closed
         controlsButton.onClick.AddListener(ShowControlsPanel);
         quitControlsButton.onClick.AddListener(HideControlsPanel);
-        HideControlsPanel();
+
+        _animator = GetComponent<Animator>();
     }
-    
+
     private void ShowControlsPanel()
     {
+        _animator.SetBool("isOpen", true);
         controlsPanel.SetActive(true);
-        isOpen= _animator.GetBool("Open_ControlP");
+      
     }
 
     private void HideControlsPanel()
     {
+        _animator.SetBool("isOpen", false);
         controlsPanel.SetActive(false);
-        _animator.SetBool("Open_ControlP", !isOpen);
+       
     }
-    
-    /*
-    private void Awake()
-    {
-        controlsButton.onClick.AddListener(OpenControlsPanel);
-        controlsPanel.SetActive(false);
-    }
-    private void OpenControlsPanel()
-    {
-        _animator = controlsPanel.GetComponent<Animator>();
-        if (_animator != null)
-        {
-            bool isOpen = _animator.GetBool("Open_ControlP");
 
-            _animator.SetBool("Open_ControlP", !isOpen);
+
+
+
+    /*
+    private void LateUpdate()
+    {
+        if(_animator != null)
+        {
+            isOpenPanel = _animator.GetBool("isOpen");
+        }
+        else
+        {
+            _animator.SetBool("isOpen", !isOpenPanel);
         }
     }
     */
