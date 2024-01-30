@@ -242,6 +242,10 @@ MonoBehaviour:
   dialogueText: {fileID: 880320727}
   contButton: {fileID: 1241296496}
   wordSeep: 0.06
+  dialogue:
+  - holaaaaaaaaa
+  - estamos probano
+  - si esto funciona
 --- !u!1 &185519860
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,12 @@ public class Player : MonoBehaviour
     private bool isWalking;
     private bool isFacing;
 
-    public Vector2 lastMovment = Vector2.zero;
+    //VARIABLES DASH
+    public float dashVelocity;
+    private float dashTimer;
+    private float inicialGravity;
+    private bool iCanDash = true;
+    private bool iCanWalk = true; //restringir el movimiento del jugador cuando dashea
 
     //REFERENCE
     private Rigidbody2D _rigidbody2D;
@@ -28,11 +33,14 @@ public class Player : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        inicialGravity = _rigidbody2D.gravityScale;
 
         _boxCollider2D = GetComponentInChildren<BoxCollider2D>();
 
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        
     }
 
     private void Update()
@@ -46,8 +54,13 @@ public class Player : MonoBehaviour
         {
             _rigidbody2D.velocity = Vector2.up * jumpSpeed;
         }
+
+        if(Input.GetKeyDown(KeyCode.LeftShift) && iCanDash) 
+        {
+            StartCoroutine(Dash());
+        }
     }
-    
+  
     private void FixedUpdate()  //Handle Movment
     {
         isWalking = _rigidbody2D.velocity.x != 0; // is walking = true when greater to 0
@@ -56,12 +69,12 @@ public class Player : MonoBehaviour
        
         if(horizontalInput < 0 ) //if  -1 < 0 --> flip to Left
         {
-            _spriteRenderer.flipX = false;
+            _spriteRenderer.flipX = true;
         } 
         
         if (horizontalInput > 0) //if  +1 > 0 -->flip to Right
         {
-            _spriteRenderer.flipX = true;
+            _spriteRenderer.flipX = false;
         }
     }
 
@@ -80,7 +93,14 @@ public class Player : MonoBehaviour
         return raycastHit2D.collider != null; //si = true si A chocado con algo que es suelo
     } 
        
-    
+    private IEnumerator Dash() //ver video de nuevo y comentar 
+    {
+        iCanWalk = false;
+
+        yield return new WaitForSeconds(dashTimer);
+
+        iCanWalk = true;
+    }
     
 }
 

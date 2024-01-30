@@ -5,54 +5,48 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
+    //CONS VARIABLE
+    private const string IS_OPEN_PARAM = "isOpen"; //Replace paramater
 
     //Control Panel VARIABLES
     [SerializeField] private Button controlsButton;
     [SerializeField] private Button quitControlsButton;
-    [SerializeField] private GameObject controlsPanel;
-
-    private bool isOpenPanel;
-
-    //REFERENCE
-    private Animator _animator;
-
+    [SerializeField] private Animator anim_ControlsPanel;
+    //Option Panel VARIABLES
+    [SerializeField] private Button optionButton;
+    [SerializeField] private Button quitOptionsButton;
+    [SerializeField] private Animator anim_OptionsPanel;
     private void Awake()
     {
+        //Control panel
         HideControlsPanel();// When the scene starts the panels will be closed
         controlsButton.onClick.AddListener(ShowControlsPanel);
         quitControlsButton.onClick.AddListener(HideControlsPanel);
 
-        _animator = GetComponent<Animator>();
+        //Option panel
+        HideOptionsPanel(); // When the scene starts the panels will be closed
+        optionButton.onClick.AddListener(ShowOptionsPanel);
+        quitOptionsButton.onClick.AddListener(HideOptionsPanel);
     }
 
     private void ShowControlsPanel()
     {
-        _animator.SetBool("isOpen", true);
-        controlsPanel.SetActive(true);
-      
+        anim_ControlsPanel.SetBool(IS_OPEN_PARAM, true);
     }
 
     private void HideControlsPanel()
     {
-        _animator.SetBool("isOpen", false);
-        controlsPanel.SetActive(false);
+        anim_ControlsPanel.SetBool(IS_OPEN_PARAM, false);
+    }
+
+    private void ShowOptionsPanel()
+    {
+        anim_OptionsPanel.SetBool(IS_OPEN_PARAM, true);
+    }
+    private void HideOptionsPanel()
+    {
+        anim_OptionsPanel.SetBool(IS_OPEN_PARAM, false);
        
     }
 
-
-
-
-    /*
-    private void LateUpdate()
-    {
-        if(_animator != null)
-        {
-            isOpenPanel = _animator.GetBool("isOpen");
-        }
-        else
-        {
-            _animator.SetBool("isOpen", !isOpenPanel);
-        }
-    }
-    */
 }
