@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // LAYERS
+    [Header ("LAYERS")]
     [SerializeField] private LayerMask groundLayerMask;
 
-    //VARIABLES
+    [Header("MOVMENT VARIABLES")]
     public float moveSpeed = 6f;
     public float jumpSpeed = 10f;
     private float horizontalInput;
@@ -16,18 +17,20 @@ public class Player : MonoBehaviour
     private bool isWalking;
     private bool isFacing;
 
-    //VARIABLES DASH
-    public float dashVelocity;
-    private float dashTimer;
+    [Header("VARIABLES DASH")]
+    [SerializeField] private float dashVelocity;
+    [SerializeField] private float dashTimer;
     private float inicialGravity;
     private bool iCanDash = true;
-    private bool iCanWalk = true; //restringir el movimiento del jugador cuando dashea
+    private bool iCanMove = true; //restringir el movimiento del jugador cuando dashea
 
-    //REFERENCE
+    [Header("REFERENCE")]
     private Rigidbody2D _rigidbody2D;
     private BoxCollider2D _boxCollider2D;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    [SerializeField] private TrailRenderer _trailRenderer;
+
 
     private void Awake()  //Set all the reference
     {
@@ -39,14 +42,19 @@ public class Player : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-
+       
         
     }
 
     private void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal"); //AxisRaw for no acceleration (we move on -1 to 1)
-     
+       
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && iCanDash)
+        {
+            StartCoroutine(Dash());
+        }
 
         isOnTheGround = IsOnTheGround();
 
@@ -55,23 +63,22 @@ public class Player : MonoBehaviour
             _rigidbody2D.velocity = Vector2.up * jumpSpeed;
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && iCanDash) 
-        {
-            StartCoroutine(Dash());
-        }
     }
-  
+
     private void FixedUpdate()  //Handle Movment
     {
-        isWalking = _rigidbody2D.velocity.x != 0; // is walking = true when greater to 0
-        _rigidbody2D.velocity = new Vector2(horizontalInput * moveSpeed, _rigidbody2D.velocity.y);
-
-       
-        if(horizontalInput < 0 ) //if  -1 < 0 --> flip to Left
+        if (iCanMove) //para el dash
+        {
+            isWalking = _rigidbody2D.velocity.x != 0; // is walking = true when greater to 0
+            _rigidbody2D.velocity = new Vector2(horizontalInput * moveSpeed, _rigidbody2D.velocity.y);
+        }
+      
+        
+        if (horizontalInput < 0) //if  -1 < 0 --> flip to Left
         {
             _spriteRenderer.flipX = true;
-        } 
-        
+        }
+
         if (horizontalInput > 0) //if  +1 > 0 -->flip to Right
         {
             _spriteRenderer.flipX = false;
@@ -81,6 +88,7 @@ public class Player : MonoBehaviour
     private void LateUpdate()
     {
         _animator.SetBool("IsWalking", isWalking); //walk animation
+        //_animator.SetBool("IsDashing", isDashing);  añadir animacion
     }
        
     private bool IsOnTheGround()  // en vez de linea usar una caja para que si nos encontramos al borde borde de la plataforma nos detecta suelo y podamos saltar
@@ -91,16 +99,22 @@ public class Player : MonoBehaviour
             + extraHeightTest, groundLayerMask);   // (origen rayo)centro del collider, dirección , distancia (la mitad de la altura)
 
         return raycastHit2D.collider != null; //si = true si A chocado con algo que es suelo
-    } 
-       
+    }
+
     private IEnumerator Dash() //ver video de nuevo y comentar 
     {
-        iCanWalk = false;
-
+        iCanMove = false;
+        iCanDash = false;
+        _rigidbody2D.gravityScale = 0;
+        _rigidbody2D.velocity = new Vector2(dashVelocity * horizontalInput, 0); // movimimento horizontal
+        _trailRenderer.emitting = true;
         yield return new WaitForSeconds(dashTimer);
 
-        iCanWalk = true;
+        iCanMove = true;
+        iCanDash = true;
+        _rigidbody2D.gravityScale = inicialGravity;
+        _trailRenderer.emitting=false;
     }
-    
+
 }
 
