@@ -5,17 +5,19 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-    //CONS VARIABLE
+    [Header("CONS VARIABLE")]
     private const string IS_OPEN_PARAM = "isOpen"; //Replace paramater
 
-    //Control Panel VARIABLES
+    [Header("Control Panel")]
     [SerializeField] private Button controlsButton;
     [SerializeField] private Button quitControlsButton;
     [SerializeField] private Animator anim_ControlsPanel;
-    //Option Panel VARIABLES
+    
+    [Header("Option Panel")]
     [SerializeField] private Button optionButton;
     [SerializeField] private Button quitOptionsButton;
     [SerializeField] private Animator anim_OptionsPanel;
+
     private void Awake()
     {
         //Control panel

@@ -14,7 +14,7 @@ public class DialogueTextAsria : MonoBehaviour
     private int index;   
     public float wordSeep;
 
-    //REFERENCE
+    [Header("REFERENCE")]
     public string[] dialogue;
     
     
