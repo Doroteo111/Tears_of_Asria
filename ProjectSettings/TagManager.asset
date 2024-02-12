@@ -7,6 +7,11 @@ TagManager:
   - Dash Cape
   - Gems
   - Blue Key
+  - Pink Key
+  - Yellow Key
+  - Purple Key
+  - Enemy
+  - Magic Projectile
   layers:
   - Default
   - TransparentFX

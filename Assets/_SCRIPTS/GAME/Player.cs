@@ -12,13 +12,23 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private LayerMask collectablesLayerMask;
 
-    [Header("COLLECTABLE / UI VARIABLES")]
+
+    [Header ("COLLECTABLE / UI VARIABLES")]
     private int gemCounter;
     public TextMeshProUGUI counterText;
     //all the ImageKeys
-    public Image keyBlueImage;//keyYellowImage,KeyPurpleImage,KeyPinkImage;
+    [SerializeField] private Image keyBlueImage,keyYellowImage,keyPurpleImage,keyPinkImage;
 
-    [Header("MOVMENT VARIABLES")]
+    [Header(" BASIC VARAIABLE")]
+
+    [SerializeField] private float playerLive = 50f;
+
+    [Header("MAGIC PROJECTILE")]
+    // saber la posicion del empty object, el punto donde sale la bala
+    [SerializeField] private Transform controllerProjectile; 
+    [SerializeField] private GameObject magicProjectile; //sprite GO bala
+
+    [Header("MOVMENT")]
     public float moveSpeed = 6f;
     public float jumpSpeed = 10f;
     private float horizontalInput;
@@ -26,15 +36,15 @@ public class Player : MonoBehaviour
     private bool isOnTheGround;
     private bool isWalking;
 
-    [Header("VARIABLES DASH")]
+
+    [Header("DASH")]
     [SerializeField] private float dashVelocity;
     [SerializeField] private float dashTimer;
     private float inicialGravity;
     private bool iCanDash = true;
     private bool iCanMove = true; //restrict the movment of the player when dash 
 
-    [SerializeField] private bool iHaveDashCape = false;
-
+   
     [Header("REFERENCE")]
     private Rigidbody2D _rigidbody2D;
     private BoxCollider2D _boxCollider2D;
@@ -54,46 +64,46 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        //images in the interface
-        keyBlueImage = gameObject.GetComponent<Image>();
-
     }
     private void Start()
     {
+       keyPinkImage.enabled = false;
+       keyYellowImage.enabled = false;
+       keyPurpleImage.enabled = false;
        keyBlueImage.enabled = false;
+       iCanDash = false;
     }
 
     private void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal"); //AxisRaw for no acceleration (we move on -1 to 1)
-       
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && iCanDash)
+        isOnTheGround = IsOnTheGround();
+
+        // DASH
+        if (Input.GetKeyDown(KeyCode.LeftShift) && iCanDash) 
         {
             StartCoroutine(Dash());
         }
 
-        isOnTheGround = IsOnTheGround();
-
+        // JUMP
         if (Input.GetKeyDown(KeyCode.Space) && IsOnTheGround())
         {
             _rigidbody2D.velocity = Vector2.up * jumpSpeed;
         }
 
+        //SHOOT PROJECTILE
+        if (Input.GetMouseButtonDown(0))  //Pressed left-click
+        {
+            //disparo
+            ShootMagicProjectile();
+        }
     }
 
     private void FixedUpdate()  //Handle Movment
     {
         if (iCanMove) //I can Dash only if I'M in movment
         {
-            iCanDash = false;
-            if(iHaveDashCape == true) 
-            {
-
-            iCanDash=true;
-
-            }
-
             isWalking = _rigidbody2D.velocity.x != 0; // is walking = true when greater to 0
             _rigidbody2D.velocity = new Vector2(horizontalInput * moveSpeed, _rigidbody2D.velocity.y);
         }
@@ -143,10 +153,15 @@ public class Player : MonoBehaviour
         _trailRenderer.emitting=false;
     }
 
+    private void ShootMagicProjectile()
+    {
+        Instantiate(magicProjectile, controllerProjectile.position, controllerProjectile.rotation);
+    }
+
     private void GetDashCape(Collider2D other) //collectable DashCape --> given power for dash
     {
         Destroy(other.gameObject);
-        iHaveDashCape = true;
+        iCanDash = true;
         //_audioSource.PlayOneShot(collectables);
         //interface update sprite cape
     }
@@ -160,10 +175,29 @@ public class Player : MonoBehaviour
 
     }
 
+
     private void GetBlueKeys(Collider2D other)
     {
         Destroy(other.gameObject);
         keyBlueImage.enabled = true;
+
+    }
+    private void GetYellowKeys(Collider2D other)
+    {
+        Destroy(other.gameObject);
+        keyYellowImage.enabled = true;
+
+    }
+    private void GetPinkKeys(Collider2D other)
+    {
+        Destroy(other.gameObject);
+        keyPinkImage.enabled = true;
+
+    }
+    private void GetPurpleKeys(Collider2D other)
+    {
+        Destroy(other.gameObject);
+        keyPurpleImage.enabled = true;
 
     }
 
@@ -180,6 +214,18 @@ public class Player : MonoBehaviour
         else if(other.gameObject.tag.Equals("Blue Key"))
         {
             GetBlueKeys(other);
+        }
+        else if (other.gameObject.tag.Equals("Purple Key"))
+        {
+            GetPurpleKeys(other);
+        }
+        else if (other.gameObject.tag.Equals("Yellow Key"))
+        {
+            GetYellowKeys(other);
+        }
+        else if (other.gameObject.tag.Equals("Pink Key"))
+        {
+            GetPinkKeys(other);
         }
     }
 
