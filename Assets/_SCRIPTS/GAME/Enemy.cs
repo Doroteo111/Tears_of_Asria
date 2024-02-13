@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -7,6 +8,7 @@ public class Enemy : MonoBehaviour
     [Header(" BASIC VARAIABLE")]
 
     [SerializeField] private float enemyLive = 100f;
+    //public GameObject deathEffect;
 
     void Start()
     {
@@ -21,11 +23,15 @@ public class Enemy : MonoBehaviour
         {
             EnemyDeath();
         }
+
+        
     }
 
     private void EnemyDeath()
     {
+       // Instantiate(deathEffect,transform.position,Quaternion.identity);
         //wait for second animación y luego desaparece 
         Destroy(gameObject);
+        
     }
 }

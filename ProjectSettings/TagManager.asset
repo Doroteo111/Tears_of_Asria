@@ -12,6 +12,7 @@ TagManager:
   - Purple Key
   - Enemy
   - Magic Projectile
+  - Teleport
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - Collectables
   - 
   - 
-  - 
-  - 
+  - MagicProjectile
+  - MapConfider
   - 
   - 
   - 

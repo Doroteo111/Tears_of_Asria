@@ -8,6 +8,9 @@ public class MainMenuUI : MonoBehaviour
     [Header("CONS VARIABLE")]
     private const string IS_OPEN_PARAM = "isOpen"; //Replace paramater
 
+    [Header("Play Button")]
+    [SerializeField] private Button playButton;
+
     [Header("Control Panel")]
     [SerializeField] private Button controlsButton;
     [SerializeField] private Button quitControlsButton;
@@ -18,8 +21,15 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button quitOptionsButton;
     [SerializeField] private Animator anim_OptionsPanel;
 
+    [Header("Quit Button")]
+    [SerializeField] private Button quitButton;
+
     private void Awake()
     {
+
+        //Play Button
+       // playButton.onClick.AddListener(() => { Loader.Load(Loader.Scene.Game); });
+
         //Control panel
         HideControlsPanel();// When the scene starts the panels will be closed
         controlsButton.onClick.AddListener(ShowControlsPanel);
@@ -29,6 +39,10 @@ public class MainMenuUI : MonoBehaviour
         HideOptionsPanel(); // When the scene starts the panels will be closed
         optionButton.onClick.AddListener(ShowOptionsPanel);
         quitOptionsButton.onClick.AddListener(HideOptionsPanel);
+
+        //Quit button
+        //quitButton.onClick.AddListener(Application.Quit);
+
     }
 
     private void ShowControlsPanel()

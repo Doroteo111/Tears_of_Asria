@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     [Header("MOVMENT")]
     public float moveSpeed = 6f;
     public float jumpSpeed = 10f;
-    private float horizontalInput;
+    public float horizontalInput;
 
     private bool isOnTheGround;
     private bool isWalking;
