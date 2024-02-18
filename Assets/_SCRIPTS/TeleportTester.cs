@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class TeleportTester : MonoBehaviour
 {
-    [SerializeField] private Transform destinaton;
+    public GameObject teleport;
+    private GameObject player;
 
-    public Transform GetDestination()
+    private void Start()
     {
-        return destinaton;
+        player = GameObject.FindWithTag("Player");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            player.transform.position = new Vector2(teleport.transform.position.x, 
+                teleport.transform.position.y);
+        }
     }
 }
