@@ -5,9 +5,11 @@ using UnityEngine.Rendering;
 
 public class Projectile : MonoBehaviour
 {
+    [Header("Projectile variables")]
     public float velocity;
     public float damage;
 
+    private float lifeTimeProyectile = 1.5f;
 
     public Rigidbody2D _rb;
     private Enemy enemy;
@@ -15,15 +17,15 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-        /*player=FindAnyObjectByType<Player>();
-        _rb.velocity = player.horizontalInput * velocity;*/
+       // player = FindAnyObjectOfType<Player>().GetHorizontalInput();
+       //busco un float
+        // _rb.velocity = player.horizontalInput * velocity;
 
-        _rb.velocity= transform.right*velocity;
+        _rb.velocity= transform.right*velocity; // * horizontainput
+
+        Destroy(gameObject,lifeTimeProyectile); //the projectile will autodestroy in 1.5 sec
     }
-    private void Update()
-    {
-        //DeleteBullet();
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D other) //hitInfo
     {
@@ -31,15 +33,9 @@ public class Projectile : MonoBehaviour
         {
             other.GetComponent<Enemy>().TakeDamage(damage);
             Debug.Log("SHOOT ENEMY");
+            Destroy(gameObject); 
         }
-        /*hitInfo.GetComponent<Enemy>();
-        if(enemy != null)
-        {
-            enemy.TakeDamage(damage);
-            Debug.Log("SHOOT ENEMY");
-        }
-        Destroy(gameObject);
-        Debug.Log(hitInfo.name);
+       
     }
    
    /* private IEnumerator DeleteBullet()
@@ -47,5 +43,5 @@ public class Projectile : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }*/
-    }
+    
 }

@@ -12,18 +12,18 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        
+       
     }
 
     public void TakeDamage(float damage)
     {
         enemyLive -= damage; //reduce la vida del enemigo cada vez que recie daño
-
+       
         if(enemyLive <= 0)
         {
             EnemyDeath();
         }
-
+        
         
     }
 

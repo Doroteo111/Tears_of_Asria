@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     [Header(" BASIC VARAIABLE")]
 
-    [SerializeField] private float playerLive = 50f;
+    [SerializeField] private float playerLive = 60f;
 
     [Header("MAGIC PROJECTILE")]
     // saber la posicion del empty object, el punto donde sale la bala
@@ -67,10 +67,15 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        //Keys images
        keyPinkImage.enabled = false;
        keyYellowImage.enabled = false;
        keyPurpleImage.enabled = false;
        keyBlueImage.enabled = false;
+
+        //hearts images
+
+        //Dash boolean --> I can't dash until I get the special object
        iCanDash = false;
     }
 
@@ -93,8 +98,9 @@ public class Player : MonoBehaviour
         }
 
         //SHOOT PROJECTILE
-        if (Input.GetMouseButtonDown(0))  //Pressed left-click
+        if (Input.GetMouseButtonDown(1))  //Pressed rigth-click
         {
+            
             //disparo
             ShootMagicProjectile();
         }
@@ -120,6 +126,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public float GetHorizontalInput()
+    {
+        return horizontalInput;
+    }
+
     private void LateUpdate()
     {
         _animator.SetBool("IsWalking", isWalking); //walk animation
@@ -136,6 +147,17 @@ public class Player : MonoBehaviour
         return raycastHit2D.collider != null; //yes = true if collides with something with the ground tag 
     }
 
+    public void TakeDamage(float damage)
+    {
+        playerLive -= damage; //reduce la vida del enemigo cada vez que recie daño
+
+        if (playerLive <= 0)
+        {
+            //gameover;
+        }
+
+
+    }
     private IEnumerator Dash() 
     {
         //when I press shift I can't move or dash again until the dashTimer finised
@@ -152,11 +174,10 @@ public class Player : MonoBehaviour
         _rigidbody2D.gravityScale = inicialGravity;
         _trailRenderer.emitting=false;
     }
-
-    private void ShootMagicProjectile()
-    {
-        Instantiate(magicProjectile, controllerProjectile.position, controllerProjectile.rotation);
-    }
+     private void ShootMagicProjectile()
+     {
+         Instantiate(magicProjectile, controllerProjectile.position, controllerProjectile.rotation);
+     }
 
     private void GetDashCape(Collider2D other) //collectable DashCape --> given power for dash
     {
