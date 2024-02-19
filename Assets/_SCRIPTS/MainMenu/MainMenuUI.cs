@@ -28,7 +28,7 @@ public class MainMenuUI : MonoBehaviour
     {
 
         //Play Button
-       // playButton.onClick.AddListener(() => { Loader.Load(Loader.Scene.Game); });
+       playButton.onClick.AddListener(() => { Loader.Load(Loader.Scene.GAME); });
 
         //Control panel
         HideControlsPanel();// When the scene starts the panels will be closed

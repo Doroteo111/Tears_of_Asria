@@ -5,48 +5,35 @@ using UnityEngine.UI;
 
 public class PauseUI : MonoBehaviour
 {
-   // [SerializeField] private Button resumeButton;
-   // [SerializeField] private Button backMainButton;
-
     [SerializeField] GameObject pausePanel;
-
     private void Start()
     {
         pausePanel.SetActive(false);
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)) // when Esc is pressed, paused the game
         {
             Pause();
         }
     }
-
-   /* private void ShowPausePanel()
-    {
-      pausePanel.SetActive(true);
-        Time.timeScale = 0f;
-    }
-    private void HidePausePanel()
-    {
-        pausePanel.SetActive(false);
-    }
-
-    public void Resume()
-    {
-        Time.timeScale = 1f;
-        HidePausePanel();
-    }*/
-
-    public void Pause()
+    public void Pause() //freeze time
     {
         pausePanel.SetActive(true);
         Time.timeScale = 0f;
     }
 
-    public void Resume()
+    public void Resume() //Unfreeze time and we can continue playing
     {
-        pausePanel.SetActive(false); 
+        pausePanel.SetActive(false);
         Time.timeScale = 1f;
     }
+
+    public void LoadMainMenu() //change to the Main Menu scene
+    {
+        Time.timeScale = 1f;
+        Loader.Load(Loader.Scene.MainMenu);
+    }
+
+
 }

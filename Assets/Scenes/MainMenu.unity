@@ -3081,14 +3081,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1586502a02e9bf44b84d3c46f4d3ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButton: {fileID: 0}
+  playButton: {fileID: 987221572}
   controlsButton: {fileID: 1403104897}
   quitControlsButton: {fileID: 1630455764}
   anim_ControlsPanel: {fileID: 340485655}
   optionButton: {fileID: 134561767}
   quitOptionsButton: {fileID: 2012314820}
   anim_OptionsPanel: {fileID: 1868314430}
-  quitButton: {fileID: 0}
+  quitButton: {fileID: 773930772}
 --- !u!1 &1491325542
 GameObject:
   m_ObjectHideFlags: 0
