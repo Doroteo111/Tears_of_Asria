@@ -8,9 +8,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-     private DataPersistence dataPersistence;
-
-
+    private DataPersistence _dataPersistence;
 
     [Header ("LAYERS")] //collider
     [SerializeField] private LayerMask groundLayerMask;
@@ -72,6 +70,7 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
+        _dataPersistence = GetComponent<DataPersistence>();
     }
     private void Start()
     {
@@ -204,8 +203,9 @@ public class Player : MonoBehaviour
         Destroy(other.gameObject);
         totalGems++;
         totalGemsText.text = $"{totalGems}/5";
-       
-       // _audioSource.PlayOneShot(collectables[1]);
+
+        _dataPersistence.SaveJson();
+        // _audioSource.PlayOneShot(collectables[1]);
 
     }
     public int GetTotalGems() //for data persistence

@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 144266069}
   - component: {fileID: 144266068}
-  - component: {fileID: 144266070}
   - component: {fileID: 144266067}
   - component: {fileID: 144266066}
   m_Layer: 5
@@ -226,26 +225,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &144266070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144266065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92b139a0a2d36114f9d2a72cb76d8966, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialoguePanel: {fileID: 1983479504}
-  dialogueText: {fileID: 880320727}
-  contButton: {fileID: 1241296496}
-  wordSeep: 0.06
-  dialogue:
-  - holaaaaaaaaa
-  - estamos probano
-  - si esto funciona
 --- !u!1 &185519860
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,6 +693,7 @@ GameObject:
   - component: {fileID: 1983479505}
   - component: {fileID: 1983479507}
   - component: {fileID: 1983479506}
+  - component: {fileID: 1983479508}
   m_Layer: 5
   m_Name: DialoguePanel
   m_TagString: Untagged
@@ -780,6 +760,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983479504}
   m_CullTransparentMesh: 1
+--- !u!114 &1983479508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983479504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b139a0a2d36114f9d2a72cb76d8966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: {fileID: 880320727}
+  nextLineButton: {fileID: 1241296498}
+  textSpeed: 0.1
+  lines:
+  - 
+  - ..............
+  - "hola, no se que poner as\xED que rellenare con tonterias"
+  - illojuan mason
+  - "cuando termine esto la viciada al steam ser\xE1 historica"
+  - nanit :-)
 --- !u!1 &2085837792
 GameObject:
   m_ObjectHideFlags: 0

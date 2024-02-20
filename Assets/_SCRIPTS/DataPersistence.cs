@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -13,6 +13,11 @@ public class DataPersistence : MonoBehaviour
 
     private void Update()
     {
+        /*if (player.gameObject.CompareTag("Gems"))
+        {
+            SaveJson();
+            Debug.Log("gem saved");
+        }*/
         
     }
 
