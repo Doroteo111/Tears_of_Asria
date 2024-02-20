@@ -8,20 +8,28 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+     private DataPersistence dataPersistence;
+
+
+
     [Header ("LAYERS")] //collider
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private LayerMask collectablesLayerMask;
 
 
     [Header ("COLLECTABLE / UI VARIABLES")]
-    private int gemCounter;
-    public TextMeshProUGUI counterText;
+    private int totalGems;
+    public TextMeshProUGUI totalGemsText;
     //all the ImageKeys
     [SerializeField] private Image keyBlueImage,keyYellowImage,keyPurpleImage,keyPinkImage;
+    public bool hasBlueKey;
+    public bool hasYellowKey;
+    public bool hasPurpleKey;
+    public bool hasPinkKey;
 
     [Header(" BASIC VARAIABLE")]
 
-    [SerializeField] private float playerLive = 60f;
+    [SerializeField] private float playerLife = 60f;
 
     [Header("MAGIC PROJECTILE")]
     // saber la posicion del empty object, el punto donde sale la bala
@@ -73,6 +81,12 @@ public class Player : MonoBehaviour
        keyPurpleImage.enabled = false;
        keyBlueImage.enabled = false;
 
+        //Has Keys
+        hasBlueKey = false;
+        hasYellowKey = false;
+        hasPurpleKey = false;
+        hasPinkKey  = false;
+
         //hearts images
 
         //Dash boolean --> I can't dash until I get the special object
@@ -117,18 +131,16 @@ public class Player : MonoBehaviour
         
         if (horizontalInput < 0) //if  -1 < 0 --> flip to Left
         {
-            _spriteRenderer.flipX = true;
+            // _spriteRenderer.flipX = true;
+            _spriteRenderer.transform.rotation = Quaternion.Euler(0,180,0);
         }
 
         if (horizontalInput > 0) //if  +1 > 0 -->flip to Right
         {
-            _spriteRenderer.flipX = false;
-        }
-    }
+           // _spriteRenderer.flipX = false;
+           _spriteRenderer.transform.rotation = Quaternion.identity;
 
-    public float GetHorizontalInput()
-    {
-        return horizontalInput;
+        }
     }
 
     private void LateUpdate()
@@ -149,9 +161,9 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        playerLive -= damage; //reduce la vida del enemigo cada vez que recie daño
+        playerLife -= damage; //reduce la vida del enemigo cada vez que recie daño
 
-        if (playerLive <= 0)
+        if (playerLife <= 0)
         {
             //gameover;
         }
@@ -190,23 +202,41 @@ public class Player : MonoBehaviour
     private void GetGems(Collider2D other) //need to collect all 5 to complete the game
     {
         Destroy(other.gameObject);
-        gemCounter++;
-        counterText.text = $"{gemCounter}/5";
+        totalGems++;
+        totalGemsText.text = $"{totalGems}/5";
+       
        // _audioSource.PlayOneShot(collectables[1]);
 
     }
+    public int GetTotalGems() //for data persistence
+    {
+        return totalGems;
+    }
+    public void SetTotalGems(int newTotal)
+    {
+        totalGems = newTotal;
+    }
 
-
+    #region KEYS LOGIC
     private void GetBlueKeys(Collider2D other)
     {
         Destroy(other.gameObject);
         keyBlueImage.enabled = true;
-
+        
+        hasBlueKey = true;
+        // Datapersistance.safe()
     }
+    public bool HasGetBlueKeys() //for data persistence
+    {
+        return hasBlueKey;                                   ;
+    }
+
     private void GetYellowKeys(Collider2D other)
     {
         Destroy(other.gameObject);
         keyYellowImage.enabled = true;
+
+        hasYellowKey = true;
 
     }
     private void GetPinkKeys(Collider2D other)
@@ -214,14 +244,17 @@ public class Player : MonoBehaviour
         Destroy(other.gameObject);
         keyPinkImage.enabled = true;
 
+        hasPinkKey = true;
+
     }
     private void GetPurpleKeys(Collider2D other)
     {
         Destroy(other.gameObject);
         keyPurpleImage.enabled = true;
 
+        hasPurpleKey = true;
     }
-
+    #endregion
     private void OnTriggerEnter2D(Collider2D other) //add all trigger collectables
     {
         if (other.gameObject.tag.Equals("Dash Cape"))

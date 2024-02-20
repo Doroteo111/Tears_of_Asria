@@ -17,11 +17,7 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-       // player = FindAnyObjectOfType<Player>().GetHorizontalInput();
-       //busco un float
-        // _rb.velocity = player.horizontalInput * velocity;
-
-        _rb.velocity= transform.right*velocity; // * horizontainput
+        _rb.velocity= transform.right*velocity; 
 
         Destroy(gameObject,lifeTimeProyectile); //the projectile will autodestroy in 1.5 sec
     }
