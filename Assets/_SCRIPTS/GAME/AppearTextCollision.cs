@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class AppearTextCollision : MonoBehaviour
 {
     [Header("UI VARIABLES")]
-    [SerializeField] private GameObject YellowDoorpanel;
+    //  [SerializeField] private GameObject YellowDoorpanel;
+    [SerializeField] private GameObject textoEjemplo;
 
     private void Start()
     {
@@ -27,11 +28,13 @@ public class AppearTextCollision : MonoBehaviour
 
     private void ShowYellowDoorPanel()
     {
-        YellowDoorpanel.SetActive(true);
+      //  YellowDoorpanel.SetActive(true);
+      textoEjemplo.SetActive(true);
     }
 
     private void HideYellowDoorPanel()
     {
-        YellowDoorpanel.SetActive(false);
+        // YellowDoorpanel.SetActive(false);
+        textoEjemplo.SetActive(false);
     }
 }

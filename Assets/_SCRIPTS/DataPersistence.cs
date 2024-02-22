@@ -7,18 +7,13 @@ public class DataPersistence : MonoBehaviour
 {
     [SerializeField] private Player player; //get acces to the player'script
 
-    private const string TOTAL_GEMS = "TotalGems";
+    //private const string TOTAL_GEMS = "TotalGems";
 
     private const string SAVE_FILE_PATH = "/save.json";
 
     private void Update()
     {
-        /*if (player.gameObject.CompareTag("Gems"))
-        {
-            SaveJson();
-            Debug.Log("gem saved");
-        }*/
-        
+       
     }
 
     public void SaveJson() 
@@ -51,7 +46,7 @@ public class DataPersistence : MonoBehaviour
             SaveData saveData = JsonUtility.FromJson<SaveData>(savedDataString);
 
             player.SetTotalGems(saveData.gems);
-           // player.HasGetBlueKeys(saveData.hasBlueKey); ERROR
+            //player.HasGetBlueKeys(saveData.hasBlueKey); 
         }
         else
         {

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private DataPersistence _dataPersistence;
+    public DataPersistence _dataPersistence;
 
     [Header ("LAYERS")] //collider
     [SerializeField] private LayerMask groundLayerMask;
@@ -20,10 +20,10 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI totalGemsText;
     //all the ImageKeys
     [SerializeField] private Image keyBlueImage,keyYellowImage,keyPurpleImage,keyPinkImage;
-    public bool hasBlueKey;
-    public bool hasYellowKey;
-    public bool hasPurpleKey;
-    public bool hasPinkKey;
+    private bool hasBlueKey;
+    private bool hasYellowKey;
+    private bool hasPurpleKey;
+    private bool hasPinkKey;
 
     [Header(" BASIC VARAIABLE")]
 
@@ -70,7 +70,6 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        _dataPersistence = GetComponent<DataPersistence>();
     }
     private void Start()
     {
@@ -203,8 +202,6 @@ public class Player : MonoBehaviour
         Destroy(other.gameObject);
         totalGems++;
         totalGemsText.text = $"{totalGems}/5";
-
-        _dataPersistence.SaveJson();
         // _audioSource.PlayOneShot(collectables[1]);
 
     }
@@ -264,10 +261,12 @@ public class Player : MonoBehaviour
         else if (other.gameObject.tag.Equals("Gems"))
         {
             GetGems(other);
+            _dataPersistence.SaveJson();
         }
         else if(other.gameObject.tag.Equals("Blue Key"))
         {
             GetBlueKeys(other);
+            _dataPersistence.SaveJson();
         }
         else if (other.gameObject.tag.Equals("Purple Key"))
         {
