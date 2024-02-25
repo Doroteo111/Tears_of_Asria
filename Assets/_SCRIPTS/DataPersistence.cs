@@ -7,8 +7,6 @@ public class DataPersistence : MonoBehaviour
 {
     [SerializeField] private Player player; //get acces to the player'script
 
-    //private const string TOTAL_GEMS = "TotalGems";
-
     private const string SAVE_FILE_PATH = "/save.json";
 
     private void Update()

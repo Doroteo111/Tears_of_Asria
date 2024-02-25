@@ -6,6 +6,8 @@ using TMPro;
 
 public class DialogueTextAsria : MonoBehaviour
 {
+    public TransitionSceneLoader TransitionScene;
+
     [Header("VARIABLES CANVAS")]
     public TextMeshProUGUI dialogueText;
     public Button nextLineButton;
@@ -63,7 +65,8 @@ public class DialogueTextAsria : MonoBehaviour
         }
         else
         {
-            Loader.Load(Loader.Scene.GAME);
+            //Read from other script, first a transition, then change the scene
+            TransitionScene.LoadNextSceneGame();
         }
     }
     

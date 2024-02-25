@@ -8,7 +8,9 @@ public class TransitionSceneLoader : MonoBehaviour
 {
     public Animator transition;
     public float transitionTime = 1f;
-    public void LoadNextScene()
+
+    // LOAD MAIN MENU --> ASRIA SPPECH SCENE
+    public void LoadNextSceneSpeech()
     {
         StartCoroutine(LoadTransScene());
     }
@@ -17,7 +19,49 @@ public class TransitionSceneLoader : MonoBehaviour
         //play animation
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-        //SceneManager.LoadScene(levelIndex);
+
         Loader.Load(Loader.Scene.AsriaSpeech);
+    }
+
+    // LOAD ASRIA SPPECH SCENE --> GAME SCENE
+    public void LoadNextSceneGame()
+    {
+        StartCoroutine(LoadTransGame());
+    }
+    IEnumerator LoadTransGame()
+    {
+        //play animation
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+
+        Loader.Load(Loader.Scene.GAME);
+    }
+
+    // LOAD GAME SCENE --> BLUE DOOR SCENE
+    public void LoadNextSceneBlueDoor()
+    {
+        StartCoroutine(LoadTransBlueDoor());
+    }
+    IEnumerator LoadTransBlueDoor()
+    {
+        //play animation
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+
+        Loader.Load(Loader.Scene.BlueDoor);
+    }
+
+    // LOAD GAME SCENE --> END GAME SCENE
+    public void LoadNextSceneEndGame()
+    {
+        StartCoroutine(LoadTransEndGame());
+    }
+    IEnumerator LoadTransEndGame()
+    {
+        //play animation
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+
+        Loader.Load(Loader.Scene.BlueDoor);
     }
 }

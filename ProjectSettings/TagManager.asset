@@ -13,6 +13,11 @@ TagManager:
   - Enemy
   - Magic Projectile
   - Teleport
+  - Collider Blue
+  - Collider Purple
+  - Collider Pink
+  - Collider Yellow
+  - Collider Asria
   layers:
   - Default
   - TransparentFX

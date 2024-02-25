@@ -36,9 +36,7 @@ public class MainMenuUI : MonoBehaviour
     }
     private void Start()
     {
-        //Play Button
-        // playButton.onClick.AddListener(() => { Loader.Load(Loader.Scene.AsriaSpeech); });
-       // playButton.onClick.AddListener(TransitionScene.LoadNextScene);
+        //Play Button --> assigned by editor
       
         //Control panel
         HideControlsPanel();// When the scene starts the panels will be closed
@@ -55,7 +53,8 @@ public class MainMenuUI : MonoBehaviour
     }
     public void PlayButton()
     {
-        TransitionScene.LoadNextScene();
+        //Read from other script, first a transition, then change the scene
+        TransitionScene.LoadNextSceneSpeech();
     }
     //We show and hide the panels with an animation and disable the buttons to avoid mess
     //in order to obligate the player to close the menu to open another or interact with a button

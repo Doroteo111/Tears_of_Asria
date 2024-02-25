@@ -18,12 +18,13 @@ public class Player : MonoBehaviour
     [Header ("COLLECTABLE / UI VARIABLES")]
     private int totalGems;
     public TextMeshProUGUI totalGemsText;
+
     //all the ImageKeys
     [SerializeField] private Image keyBlueImage,keyYellowImage,keyPurpleImage,keyPinkImage;
-    private bool hasBlueKey;
-    private bool hasYellowKey;
-    private bool hasPurpleKey;
-    private bool hasPinkKey;
+    public bool hasBlueKey;
+    public bool hasYellowKey;
+    public bool hasPurpleKey;
+    public bool hasPinkKey;
 
     [Header(" BASIC VARAIABLE")]
 
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
 
     private bool isOnTheGround;
     private bool isWalking;
+    private bool isJumping = false;
 
 
     [Header("DASH")]
@@ -106,7 +108,10 @@ public class Player : MonoBehaviour
         // JUMP
         if (Input.GetKeyDown(KeyCode.Space) && IsOnTheGround())
         {
+            isJumping = true;
+            _animator.SetBool("IsJumping", isJumping);
             _rigidbody2D.velocity = Vector2.up * jumpSpeed;
+          
         }
 
         //SHOOT PROJECTILE
@@ -129,13 +134,11 @@ public class Player : MonoBehaviour
         
         if (horizontalInput < 0) //if  -1 < 0 --> flip to Left
         {
-            // _spriteRenderer.flipX = true;
             _spriteRenderer.transform.rotation = Quaternion.Euler(0,180,0);
         }
 
         if (horizontalInput > 0) //if  +1 > 0 -->flip to Right
         {
-           // _spriteRenderer.flipX = false;
            _spriteRenderer.transform.rotation = Quaternion.identity;
 
         }
@@ -143,12 +146,15 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        _animator.SetBool("IsWalking", isWalking); //walk animation
+        _animator.SetBool("IsWalking", isWalking); 
         //_animator.SetBool("IsDashing", isDashing);  añadir animacion
+      //  _animator.SetBool("IsJumping", isJumping);
     }
-       
+    
     private bool IsOnTheGround()  // en vez de linea usar una caja para que si nos encontramos al borde borde de la plataforma nos detecta suelo y podamos saltar
     {
+        isOnTheGround = true;
+        _animator.SetBool("IsJumping", false);
         float extraHeightTest = 0.05f; //
 
         RaycastHit2D raycastHit2D = Physics2D.Raycast(_boxCollider2D.bounds.center, Vector2.down, _boxCollider2D.bounds.extents.y
@@ -214,7 +220,7 @@ public class Player : MonoBehaviour
         totalGems = newTotal;
     }
 
-    #region KEYS LOGIC
+    #region -->> KEYS LOGIC <<--
     private void GetBlueKeys(Collider2D other)
     {
         Destroy(other.gameObject);
