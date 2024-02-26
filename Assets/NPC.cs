@@ -6,50 +6,110 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
-    private bool playerIsClose;
-    public GameObject text;
+    [Header("VARIABLES")]
+    public GameObject textTalk;
+    public TextMeshProUGUI dialogueText;
+    public GameObject panelNPCdialogue;
+    private bool playerIsTalkingNPC;
 
-    public GameObject npcText;
+    public float textSpeed;
+    private int index;
 
-    public SpriteRenderer imageText;
-
+    [Header("REFERENCE")]
+    public string[] lines;
     private void Start()
     {
         HideAppearText();
-        imageText.enabled = false;
-        npcText.SetActive(false);
+        panelNPCdialogue.SetActive(false);
+
+        dialogueText.text = string.Empty;
+
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerIsClose == true)
+        if (Input.GetKeyDown(KeyCode.T) && playerIsTalkingNPC == true)
         {
-            imageText.enabled = true;
-            npcText.SetActive(true);
+            panelNPCdialogue.SetActive(true);
             HideAppearText();
+            playerIsTalkingNPC = true;
+            StartDialogue();
+        }
+
+        if (Input.GetKeyDown(KeyCode.T) && playerIsTalkingNPC == true)
+        {
+            NextLineKeySpace();
         }
     }
 
+    //When the player its in the collider
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ShowAppearText();
-        playerIsClose = true;
+        playerIsTalkingNPC = true;
         if (collision.CompareTag("Player") == true)
         {
-            Debug.Log("estoy dentro puerta asria");
+            Debug.Log("estoy con el NPC");
         }
     }
+    //When the player its outside the collider
     private void OnTriggerExit2D(Collider2D collision)
     {
         Debug.Log("estoy fuera");
+       panelNPCdialogue.SetActive(false) ;
         HideAppearText();
     }
+
+    private void NextLineKeySpace()
+    {
+        //Pass to the next line and if you press again autocomplete the sentence 
+        if (dialogueText.text == lines[index])
+        {
+            NextLine();
+        }
+        else
+        {
+            StopAllCoroutines();
+            dialogueText.text = lines[index];
+        }
+    }
+    private void StartDialogue()
+    {
+        index = 0;
+        StartCoroutine(TypeLine());
+    }
+    IEnumerator TypeLine() //write letter by letter
+    {
+        // text > the array lines in the curren index > converts string to Chararray
+        foreach (char c in lines[index].ToCharArray())
+        {
+            dialogueText.text += c;
+            yield return new WaitForSeconds(textSpeed);
+        }
+    }
+    private void NextLine()
+    {
+        if(index < lines.Length - 1)
+        {
+            index++;
+            dialogueText.text = string.Empty;
+            StartCoroutine(TypeLine());
+        }
+        else
+        {
+            //when we ran out of line, the panel will disappear
+            panelNPCdialogue.SetActive(false);
+        }
+    }
+
+    // Show and Hide text to let to know the player if 
+    // want to talk with the NPC
     private void ShowAppearText()
     {
-        text.SetActive(true);
+        textTalk.SetActive(true);
     }
 
     private void HideAppearText()
     {
-        text.SetActive(false);
+        textTalk.SetActive(false);
     }
 }

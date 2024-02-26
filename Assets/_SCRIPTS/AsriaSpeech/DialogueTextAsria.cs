@@ -19,7 +19,7 @@ public class DialogueTextAsria : MonoBehaviour
 
     private void Start()
     {
-        dialogueText.text = string.Empty; //will start without text
+        dialogueText.text = string.Empty; 
         StartDialogue();
 
         nextLineButton.onClick.AddListener(ButtonNextLine);

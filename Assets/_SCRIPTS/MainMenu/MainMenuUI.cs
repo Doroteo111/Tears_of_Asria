@@ -49,7 +49,7 @@ public class MainMenuUI : MonoBehaviour
         quitOptionsButton.onClick.AddListener(HideOptionsPanel);
 
         //Quit button
-        //quitButton.onClick.AddListener(Application.Quit);
+        quitButton.onClick.AddListener(Application.Quit);
     }
     public void PlayButton()
     {

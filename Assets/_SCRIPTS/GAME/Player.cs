@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -97,7 +96,8 @@ public class Player : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal"); //AxisRaw for no acceleration (we move on -1 to 1)
 
-        isOnTheGround = IsOnTheGround();
+        isOnTheGround = IsOnTheGround(); // reulstado raycast
+        isJumping = !isOnTheGround;
 
         // DASH
         if (Input.GetKeyDown(KeyCode.LeftShift) && iCanDash) 
@@ -108,8 +108,8 @@ public class Player : MonoBehaviour
         // JUMP
         if (Input.GetKeyDown(KeyCode.Space) && IsOnTheGround())
         {
-            isJumping = true;
-            _animator.SetBool("IsJumping", isJumping);
+            //isJumping = true;
+            
             _rigidbody2D.velocity = Vector2.up * jumpSpeed;
           
         }
@@ -148,19 +148,19 @@ public class Player : MonoBehaviour
     {
         _animator.SetBool("IsWalking", isWalking); 
         //_animator.SetBool("IsDashing", isDashing);  añadir animacion
-      //  _animator.SetBool("IsJumping", isJumping);
+       _animator.SetBool("IsJumping", isJumping);
     }
     
     private bool IsOnTheGround()  // en vez de linea usar una caja para que si nos encontramos al borde borde de la plataforma nos detecta suelo y podamos saltar
     {
-        isOnTheGround = true;
-        _animator.SetBool("IsJumping", false);
         float extraHeightTest = 0.05f; //
 
         RaycastHit2D raycastHit2D = Physics2D.Raycast(_boxCollider2D.bounds.center, Vector2.down, _boxCollider2D.bounds.extents.y
             + extraHeightTest, groundLayerMask);   // (note 4 me) origin line --> centre from the collider, direction, distance (half of height)
 
-        return raycastHit2D.collider != null; //yes = true if collides with something with the ground tag 
+        return raycastHit2D.collider != null;//yes = true if collides with something with the ground tag 
+        
+        
     }
 
     public void TakeDamage(float damage)
