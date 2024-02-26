@@ -6,6 +6,6 @@ public class BackToGame : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Loader.Load(Loader.Scene.GAME);
+       Loader.Load(Loader.Scene.GAME);     
     }
 }

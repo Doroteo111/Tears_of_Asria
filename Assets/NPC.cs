@@ -9,6 +9,7 @@ public class NPC : MonoBehaviour
     [Header("VARIABLES")]
     public GameObject textTalk;
     public TextMeshProUGUI dialogueText;
+    public Button nextLineButton;
     public GameObject panelNPCdialogue;
     private bool playerIsTalkingNPC;
 
@@ -23,6 +24,8 @@ public class NPC : MonoBehaviour
         panelNPCdialogue.SetActive(false);
 
         dialogueText.text = string.Empty;
+        StartDialogue();
+        nextLineButton.onClick.AddListener(ButtonNextLine);
 
     }
     private void Update()
@@ -32,13 +35,9 @@ public class NPC : MonoBehaviour
             panelNPCdialogue.SetActive(true);
             HideAppearText();
             playerIsTalkingNPC = true;
-            StartDialogue();
         }
 
-        if (Input.GetKeyDown(KeyCode.T) && playerIsTalkingNPC == true)
-        {
-            NextLineKeySpace();
-        }
+       
     }
 
     //When the player its in the collider
@@ -59,7 +58,7 @@ public class NPC : MonoBehaviour
         HideAppearText();
     }
 
-    private void NextLineKeySpace()
+    private void ButtonNextLine()
     {
         //Pass to the next line and if you press again autocomplete the sentence 
         if (dialogueText.text == lines[index])
