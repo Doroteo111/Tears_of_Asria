@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueSceneLoad : MonoBehaviour
+public class DoorsSceneLoad : MonoBehaviour
 {
     public DataPersistence _dataPersistence;
 
@@ -11,8 +11,5 @@ public class BlueSceneLoad : MonoBehaviour
         _dataPersistence.LoadJson();
     }
 
-    private void Start()
-    {
-       
-    }
+    
 }

@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
 {
     public DataPersistence _dataPersistence;
 
+   [Header("UUID")] //unique unsigned identification
+    public string nextUuid; //reference and save the next uuid
+
     [Header ("LAYERS")] //collider
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private LayerMask collectablesLayerMask;

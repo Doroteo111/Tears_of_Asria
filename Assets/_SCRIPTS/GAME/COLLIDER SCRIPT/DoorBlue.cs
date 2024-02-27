@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class AppearTextCollision : MonoBehaviour
+public class DoorBlue : MonoBehaviour
 {
     public DataPersistence _dataPersistence;
     public Player _player;
@@ -14,6 +14,9 @@ public class AppearTextCollision : MonoBehaviour
     [Header("UI VARIABLES")]
     [SerializeField] private GameObject textoEjemplo;
 
+    [Header("UUID")] //unique unsigned identification
+    public string uuid; //save a unique and specific exit point 
+
     private void Start()
     {
         HideAppearText();
@@ -21,19 +24,23 @@ public class AppearTextCollision : MonoBehaviour
 
     private void Update()
     {
-        // no se como conectar los valores del trigger enter al update
+        // If player is in the collider
        if (Input.GetKeyDown(KeyCode.E) && playerIsClose == true)
         {
             if (_player.hasBlueKey == true)
             {
-                Debug.Log("tienes la llave");
-                //
+                Debug.Log("you have the key");
+
+                // the next uuid is what we confirm in that uuid
+                FindObjectOfType<Player>().nextUuid = uuid;
                 //Read from other script, first a transition, then change the scene
                 TransitionScene.LoadNextSceneBlueDoor();
+              
             }
             else
             {
-                Debug.Log("no tienes llave");
+                Debug.Log("you dont have the key");
+                //add ui text
             }
         }
     }
@@ -45,19 +52,8 @@ public class AppearTextCollision : MonoBehaviour
 
         if(collision.CompareTag("Player") == true )
         {
-            _dataPersistence.LoadJson();
+            _dataPersistence.LoadJson(); //load to confirm if you have the key
             Debug.Log("estoy dentro");
-
-           /* if (_player.hasBlueKey == true)
-            {
-                Debug.Log("tienes la llave");
-                // no quiero un salto directo, quiero usar un input
-                Loader.Load(Loader.Scene.BlueDoor);
-            }
-            else
-            {
-                Debug.Log("no tienes llave");
-            }*/
         }
 
     }
@@ -68,6 +64,7 @@ public class AppearTextCollision : MonoBehaviour
         HideAppearText();
     }
 
+    //Visual text that helps the player to know which key press
     private void ShowAppearText()
     {
       textoEjemplo.SetActive(true);

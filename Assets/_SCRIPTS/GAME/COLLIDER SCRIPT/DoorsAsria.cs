@@ -55,6 +55,7 @@ public class DoorsAsria : MonoBehaviour
         HideAppearText();
     }
 
+    //Visual text that helps the player to know which key press
     private void ShowAppearText()
     { 
         textoEjemplo.SetActive(true);
