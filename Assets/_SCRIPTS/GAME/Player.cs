@@ -48,8 +48,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashVelocity;
     [SerializeField] private float dashTimer;
     private float inicialGravity;
-    private bool iCanDash = true;
-    private bool iCanMove = true; //restrict the movment of the player when dash 
+    private bool iCanDash;
+    public bool iCanMove = true; //restrict the movment of the player when dash 
 
    
     [Header("REFERENCE")]
@@ -195,15 +195,23 @@ public class Player : MonoBehaviour
          Instantiate(magicProjectile, controllerProjectile.position, controllerProjectile.rotation);
      }
 
-    private void GetDashCape(Collider2D other) //collectable DashCape --> given power for dash
+    private void CollectDashCape(Collider2D other) //collectable DashCape --> given power for dash
     {
         Destroy(other.gameObject);
         iCanDash = true;
         //_audioSource.PlayOneShot(collectables);
         //interface update sprite cape
     }
+    public bool GetDashCape()
+    {
+        return iCanDash;
+    }
 
-    private void GetGems(Collider2D other) //need to collect all 5 to complete the game
+    public void SetDashCape(bool dataJson)
+    {
+        iCanDash=dataJson;
+    }
+    private void CollectGems(Collider2D other) //need to collect all 5 to complete the game
     {
         Destroy(other.gameObject);
         totalGems++;
@@ -211,30 +219,40 @@ public class Player : MonoBehaviour
         // _audioSource.PlayOneShot(collectables[1]);
 
     }
-    public int GetTotalGems() //for data persistence
+    public int GetTotalGems() //for data persistence (safe)
     {
         return totalGems;
     }
-    public void SetTotalGems(int newTotal)
+    public void SetTotalGems(int newTotal) //(load)
     {
         totalGems = newTotal;
+        if (totalGems > 0)
+        {
+            totalGemsText.text = $"{totalGems}/5";
+        }
     }
 
     #region -->> KEYS LOGIC <<--
-    private void GetBlueKeys(Collider2D other)
+    private void CollectBlueKey(Collider2D other)
     {
         Destroy(other.gameObject);
         keyBlueImage.enabled = true;
         
         hasBlueKey = true;
-        // Datapersistance.safe()
     }
-    public bool HasGetBlueKeys() //for data persistence
+    public bool GetBlueKey() //for data persistence (safe)
     {
-        return hasBlueKey;                                   ;
+        return hasBlueKey;                                   
     }
-
-    private void GetYellowKeys(Collider2D other)
+    public void SetBlueKey(bool dataJson) //(load)
+    {
+        hasBlueKey = dataJson;
+        if (dataJson)
+        {
+            keyBlueImage.enabled=true;
+        }
+    }
+    private void CollectYellowKey(Collider2D other)
     {
         Destroy(other.gameObject);
         keyYellowImage.enabled = true;
@@ -242,7 +260,19 @@ public class Player : MonoBehaviour
         hasYellowKey = true;
 
     }
-    private void GetPinkKeys(Collider2D other)
+    public bool GetYellowKey() //for data persistence (safe)
+    {
+        return hasYellowKey;
+    }
+    public void SetYellowKey(bool dataJson) //(load)
+    {
+        hasYellowKey = dataJson;
+        if (dataJson)
+        {
+            keyYellowImage.enabled = true;
+        }
+    }
+    private void CollectPinkKey(Collider2D other)
     {
         Destroy(other.gameObject);
         keyPinkImage.enabled = true;
@@ -250,41 +280,68 @@ public class Player : MonoBehaviour
         hasPinkKey = true;
 
     }
-    private void GetPurpleKeys(Collider2D other)
+    public bool GetPinkKey() //for data persistence (safe)
+    {
+        return hasPinkKey;
+    }
+    public void SetPinkKey(bool dataJson) //(load)
+    {
+        hasPinkKey = dataJson;
+        if (dataJson)
+        {
+            keyPinkImage.enabled = true;
+        }
+    }
+    private void CollectPurpleKey(Collider2D other)
     {
         Destroy(other.gameObject);
         keyPurpleImage.enabled = true;
 
         hasPurpleKey = true;
     }
+    public bool GetPurpleKey() //for data persistence (safe)
+    {
+        return hasPurpleKey;
+    }
+    public void SetPurpleKey(bool dataJson) //(load)
+    {
+        hasPurpleKey = dataJson;
+        if (dataJson)
+        {
+            keyPurpleImage.enabled = true;
+        }
+    }
     #endregion
     private void OnTriggerEnter2D(Collider2D other) //add all trigger collectables
     {
         if (other.gameObject.tag.Equals("Dash Cape"))
         {
-            GetDashCape(other);
+            CollectDashCape(other);
+            _dataPersistence.SaveJson(); //save data
         }
         else if (other.gameObject.tag.Equals("Gems"))
         {
-            GetGems(other);
-            _dataPersistence.SaveJson();
+            CollectGems(other);
+            _dataPersistence.SaveJson(); //save data
         }
         else if(other.gameObject.tag.Equals("Blue Key"))
         {
-            GetBlueKeys(other);
-            _dataPersistence.SaveJson();
+            CollectBlueKey(other);
+            _dataPersistence.SaveJson(); //save data
         }
         else if (other.gameObject.tag.Equals("Purple Key"))
         {
-            GetPurpleKeys(other);
+            CollectPurpleKey(other);
         }
         else if (other.gameObject.tag.Equals("Yellow Key"))
         {
-            GetYellowKeys(other);
+            CollectYellowKey(other);
+            _dataPersistence.SaveJson(); //save data
         }
         else if (other.gameObject.tag.Equals("Pink Key"))
         {
-            GetPinkKeys(other);
+            CollectPinkKey(other);
+            _dataPersistence.SaveJson(); //save data
         }
     }
 

@@ -17,14 +17,23 @@ public class DataPersistence : MonoBehaviour
     public void SaveJson() 
     {
         Debug.Log("Saved with JSON");
-
+        
         int totalGems=player.GetTotalGems();
-        bool hasBlueKey=player.HasGetBlueKeys();
+        bool hasBlueKey=player.GetBlueKey();
+        bool hasYellowKey=player.GetYellowKey();
+        bool hasPurpleKey=player.GetPurpleKey();
+        bool hasPinkKey=player.GetPinkKey();
+        bool iCanDash=player.GetDashCape();
 
         SaveData saveData = new SaveData
         {
             gems = totalGems,
-            hasBlueKey = hasBlueKey
+            hasBlueKey = hasBlueKey,
+            hasYellowKey= hasYellowKey,
+            hasPurpleKey= hasPurpleKey,
+            hasPinkKey = hasPinkKey,
+            iCanDash=iCanDash,
+
             
         };
 
@@ -43,8 +52,10 @@ public class DataPersistence : MonoBehaviour
 
             SaveData saveData = JsonUtility.FromJson<SaveData>(savedDataString);
 
+            player.SetDashCape(saveData.iCanDash);
             player.SetTotalGems(saveData.gems);
-            //player.HasGetBlueKeys(saveData.hasBlueKey); 
+            player.SetBlueKey(saveData.hasBlueKey); 
+            player.SetYellowKey(saveData.hasYellowKey);
         }
         else
         {

@@ -20,4 +20,5 @@ public class SaveData
     public int myCurrentLife;
 
     //Dash cape
+    public bool iCanDash;
 }

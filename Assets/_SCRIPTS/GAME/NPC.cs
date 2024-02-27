@@ -17,6 +17,7 @@ public class NPC : MonoBehaviour
     private int index;
 
     [Header("REFERENCE")]
+    public Player _player;
     public string[] lines;
     private void Start()
     {
@@ -30,11 +31,15 @@ public class NPC : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T) && playerIsTalkingNPC == true)
+        if (Input.GetKeyDown(KeyCode.T) && playerIsTalkingNPC)
         {
             panelNPCdialogue.SetActive(true);
             HideAppearText();
             playerIsTalkingNPC = true;
+
+            //Now the player can't move during the dialogue
+            _player.iCanMove = false;
+
         }
 
        
@@ -97,6 +102,9 @@ public class NPC : MonoBehaviour
         {
             //when we ran out of line, the panel will disappear
             panelNPCdialogue.SetActive(false);
+
+            //Now the player can move
+            _player.iCanMove = true;
         }
     }
 

@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     public float velocity;
     public float damage;
 
-    private float lifeTimeProyectile = 1.5f;
+    private float lifeTimeProyectile = 0.4f;
 
     public Rigidbody2D _rb;
     private Enemy enemy;
