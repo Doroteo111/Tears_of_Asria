@@ -251,7 +251,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4234596912930770118, guid: 392cc426c72531240a6aa060f3e2190b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.150375
+      value: -9.32
       objectReference: {fileID: 0}
     - target: {fileID: 4234596912930770118, guid: 392cc426c72531240a6aa060f3e2190b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -291,7 +291,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5390797773666035897, guid: 392cc426c72531240a6aa060f3e2190b, type: 3}
       propertyPath: uuid
-      value: 'door blue '
+      value: door blue exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5390797773666035897, guid: 392cc426c72531240a6aa060f3e2190b, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1749094147}
+    - target: {fileID: 5390797773666035897, guid: 392cc426c72531240a6aa060f3e2190b, type: 3}
+      propertyPath: lastExitPoint
+      value: Entrance Blue
       objectReference: {fileID: 0}
     - target: {fileID: 6663500375519806742, guid: 392cc426c72531240a6aa060f3e2190b, type: 3}
       propertyPath: m_Name
@@ -332,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18b518a59b0fc945b1f9fcc8756ba66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uuid: door blue exit
+  exitPoint: Exit Blue
 --- !u!61 &257190645
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -387,7 +395,7 @@ Transform:
   m_GameObject: {fileID: 257190643}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.22, y: -1.07, z: 0.15141717}
+  m_LocalPosition: {x: -11.389625, y: -1.07, z: 0.15141717}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

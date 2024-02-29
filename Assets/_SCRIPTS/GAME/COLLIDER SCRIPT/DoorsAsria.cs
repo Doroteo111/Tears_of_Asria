@@ -12,7 +12,7 @@ public class DoorsAsria : MonoBehaviour
     public bool playerIsClose;
 
     [Header("UI VARIABLES")]
-    [SerializeField] private GameObject textoEjemplo;
+    [SerializeField] private GameObject infoTextA;
 
     private void Start()
     {
@@ -23,17 +23,15 @@ public class DoorsAsria : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose == true)
         {
-            //Read from other script, first a transition, then change the scene
-            TransitionScene.LoadNextSceneEndGame();
-
-            /* if (_player tiene todas las gemas 5/5)
-             {
-                 //TransitionScene.LoadNextSceneEndGame();
-             }
-             else
-             {
-                 Debug.Log("no tienes todos los fragmentos, no puedes pasar");
-             }*/
+            if (_player.totalGems == 5)
+            {
+                //Read from other script, first a transition, then change the scene
+                TransitionScene.LoadNextSceneEndGame();
+            }
+            else
+            {
+                Debug.Log("no tienes todos los fragmentos, no puedes pasar");
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,11 +56,11 @@ public class DoorsAsria : MonoBehaviour
     //Visual text that helps the player to know which key press
     private void ShowAppearText()
     { 
-        textoEjemplo.SetActive(true);
+        infoTextA.SetActive(true);
     }
 
     private void HideAppearText()
     {
-        textoEjemplo.SetActive(false);
+        infoTextA.SetActive(false);
     }
 }

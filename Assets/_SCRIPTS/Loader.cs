@@ -18,7 +18,9 @@ public static class Loader
         PurpleDoor,
         YellowDoor,
         EndGame,
-        Credits
+        Credits,
+        Test1,
+        Test2
     }
 
     public static void Load(Scene scene)

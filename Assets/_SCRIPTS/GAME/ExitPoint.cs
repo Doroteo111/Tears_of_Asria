@@ -4,27 +4,20 @@ using UnityEngine;
 
 public class ExitPoint : MonoBehaviour
 {
-   [Header("UUID")] //unique unsigned identification
-    public string uuid; //save a unique and specific exit point 
-
     [Header("REFERENCE")]
-    private Player _player;
+    public Player _player;
+
+    public string lastExitPoint;
+
     void Start()
     {
-        _player = FindAnyObjectByType<Player>();
 
-        if (!_player.nextUuid.Equals(uuid)) //if the player's next uuid doesn't match the current uuid, this place is not
+        if(PlayerPrefs.GetString("LastExitPoint")== lastExitPoint)
         {
-            return;
+            _player.transform.position = this.transform.position;
         }
-        //we change the position of the player where this exit point is.
-        _player.transform.position = this.transform.position;
+        //_player = FindAnyObjectByType<Player>();
 
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

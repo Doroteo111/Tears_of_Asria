@@ -9,8 +9,7 @@ public class Player : MonoBehaviour
 {
     public DataPersistence _dataPersistence;
 
-   [Header("UUID")] //unique unsigned identification
-    public string nextUuid; //reference and save the next uuid
+    public string nextPoint;
 
     [Header ("LAYERS")] //collider
     [SerializeField] private LayerMask groundLayerMask;
@@ -18,7 +17,7 @@ public class Player : MonoBehaviour
 
 
     [Header ("COLLECTABLE / UI VARIABLES")]
-    private int totalGems;
+    public int totalGems;
     public TextMeshProUGUI totalGemsText;
 
     //all the ImageKeys
@@ -74,9 +73,11 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
+
     }
     private void Start()
     {
+        
         //Keys images
        keyPinkImage.enabled = false;
        keyYellowImage.enabled = false;

@@ -12,10 +12,10 @@ public class DoorBlue : MonoBehaviour
     public bool playerIsClose;
 
     [Header("UI VARIABLES")]
-    [SerializeField] private GameObject textoEjemplo;
+    [SerializeField] private GameObject infoText;
 
-    [Header("UUID")] //unique unsigned identification
-    public string uuid; //save a unique and specific exit point 
+   public string exitPoint;
+ 
 
     private void Start()
     {
@@ -31,11 +31,12 @@ public class DoorBlue : MonoBehaviour
             {
                 Debug.Log("you have the key");
 
-                // the next uuid is what we confirm in that uuid
-                FindObjectOfType<Player>().nextUuid = uuid;
+
                 //Read from other script, first a transition, then change the scene
+                //PlayerPrefs.SetString("LastExitPoint", startPoint);
+                //FindObjectOfType<Player>().nextPoint = exitPoint;
                 TransitionScene.LoadNextSceneBlueDoor();
-              
+
             }
             else
             {
@@ -65,13 +66,15 @@ public class DoorBlue : MonoBehaviour
     }
 
     //Visual text that helps the player to know which key press
+   
     private void ShowAppearText()
     {
-      textoEjemplo.SetActive(true);
+      infoText.SetActive(true);
     }
 
     private void HideAppearText()
     {
-        textoEjemplo.SetActive(false);
+      infoText.SetActive(false);
     }
+    
 }

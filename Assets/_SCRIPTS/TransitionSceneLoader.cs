@@ -64,4 +64,18 @@ public class TransitionSceneLoader : MonoBehaviour
 
         Loader.Load(Loader.Scene.BlueDoor);
     }
+
+    // LOAD TEST1 --> TEST2 SCENE
+    public void LoadNextSceneTestTwo()
+    {
+        StartCoroutine(LoadTransTestTwo());
+    }
+    IEnumerator LoadTransTestTwo()
+    {
+        //play animation
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+
+        Loader.Load(Loader.Scene.Test1);
+    }
 }
