@@ -7,6 +7,7 @@ using TMPro;
 public class DialogueTextAsria : MonoBehaviour
 {
     public TransitionSceneLoader TransitionScene;
+    public string startPoint;
 
     [Header("VARIABLES CANVAS")]
     public TextMeshProUGUI dialogueText;
@@ -66,6 +67,7 @@ public class DialogueTextAsria : MonoBehaviour
         else
         {
             //Read from other script, first a transition, then change the scene
+            PlayerPrefs.SetString("LastExitPoint", startPoint);
             TransitionScene.LoadNextSceneGame();
         }
     }

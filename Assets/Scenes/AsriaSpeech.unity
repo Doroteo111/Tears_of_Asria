@@ -984,6 +984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TransitionScene: {fileID: 426082828}
+  startPoint: StartPoint
   dialogueText: {fileID: 880320727}
   nextLineButton: {fileID: 1241296498}
   textSpeed: 0.1

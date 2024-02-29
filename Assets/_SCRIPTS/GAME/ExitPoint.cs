@@ -11,12 +11,12 @@ public class ExitPoint : MonoBehaviour
 
     void Start()
     {
-
-        if(PlayerPrefs.GetString("LastExitPoint")== lastExitPoint)
+       // _player = FindAnyObjectByType<Player>();
+        if (PlayerPrefs.GetString("LastExitPoint")== lastExitPoint)
         {
             _player.transform.position = this.transform.position;
         }
-        //_player = FindAnyObjectByType<Player>();
+       
 
 
     }
