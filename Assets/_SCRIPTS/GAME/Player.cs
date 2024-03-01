@@ -336,6 +336,7 @@ public class Player : MonoBehaviour
         else if (other.gameObject.tag.Equals("Purple Key"))
         {
             CollectPurpleKey(other);
+            _dataPersistence.SaveJson(); //save data
         }
         else if (other.gameObject.tag.Equals("Yellow Key"))
         {

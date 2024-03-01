@@ -30,11 +30,7 @@ public class DoorBlue : MonoBehaviour
             if (_player.hasBlueKey == true)
             {
                 Debug.Log("you have the key");
-
-
                 //Read from other script, first a transition, then change the scene
-                //PlayerPrefs.SetString("LastExitPoint", startPoint);
-                //FindObjectOfType<Player>().nextPoint = exitPoint;
                 TransitionScene.LoadNextSceneBlueDoor();
 
             }

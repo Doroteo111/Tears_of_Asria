@@ -51,6 +51,48 @@ public class TransitionSceneLoader : MonoBehaviour
         Loader.Load(Loader.Scene.BlueDoor);
     }
 
+    // LOAD GAME SCENE --> YELLOW DOOR SCENE
+    public void LoadNextSceneYellowDoor()
+    {
+        StartCoroutine(LoadTransYellowDoor());
+    }
+    IEnumerator LoadTransYellowDoor()
+    {
+        //play animation
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+
+        Loader.Load(Loader.Scene.YellowDoor);
+    }
+
+    // LOAD GAME SCENE --> PURPLE DOOR SCENE
+    public void LoadNextScenePurpleDoor()
+    {
+        StartCoroutine(LoadTransPurpleDoor());
+    }
+    IEnumerator LoadTransPurpleDoor()
+    {
+        //play animation
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+
+        Loader.Load(Loader.Scene.PurpleDoor);
+    }
+
+    // LOAD GAME SCENE --> PINK DOOR SCENE
+    public void LoadNextScenePinkDoor()
+    {
+        StartCoroutine(LoadTransPinkDoor());
+    }
+    IEnumerator LoadTransPinkDoor()
+    {
+        //play animation
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+
+        Loader.Load(Loader.Scene.PinkDoor);
+    }
+
     // LOAD GAME SCENE --> END GAME SCENE
     public void LoadNextSceneEndGame()
     {
@@ -65,17 +107,5 @@ public class TransitionSceneLoader : MonoBehaviour
         Loader.Load(Loader.Scene.BlueDoor);
     }
 
-    // LOAD TEST1 --> TEST2 SCENE
-    public void LoadNextSceneTestTwo()
-    {
-        StartCoroutine(LoadTransTestTwo());
-    }
-    IEnumerator LoadTransTestTwo()
-    {
-        //play animation
-        transition.SetTrigger("Start");
-        yield return new WaitForSeconds(transitionTime);
-
-        Loader.Load(Loader.Scene.Test1);
-    }
+   
 }

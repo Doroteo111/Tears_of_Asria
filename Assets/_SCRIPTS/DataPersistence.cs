@@ -56,6 +56,8 @@ public class DataPersistence : MonoBehaviour
             player.SetTotalGems(saveData.gems);
             player.SetBlueKey(saveData.hasBlueKey); 
             player.SetYellowKey(saveData.hasYellowKey);
+            player.SetPinkKey(saveData.hasPinkKey);
+            player.SetPurpleKey(saveData.hasPurpleKey);
         }
         else
         {
