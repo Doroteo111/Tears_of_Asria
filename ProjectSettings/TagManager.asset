@@ -18,6 +18,9 @@ TagManager:
   - Collider Pink
   - Collider Yellow
   - Collider Asria
+  - Heart
+  - EnemyProjectile
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -28,14 +31,14 @@ TagManager:
   - Ground
   - Player
   - Collectables
-  - 
+  - Enemy
   - teleport
   - MagicProjectile
   - MapConfider
   - ColliderDoors
   - ColliderNPC
-  - 
-  - 
+  - Walls
+  - EnemyProjectile
   - 
   - 
   - 

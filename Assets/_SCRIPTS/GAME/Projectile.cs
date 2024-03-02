@@ -5,14 +5,11 @@ using UnityEngine.Rendering;
 
 public class Projectile : MonoBehaviour
 {
-    [Header("Projectile variables")]
+    [Header("Projectile variables")] //player projectiles
     public float velocity;
-    public float damage;
-
+    private float damage = 1f;
     private float lifeTimeProyectile = 0.4f;
-
     public Rigidbody2D _rb;
-    private Enemy enemy;
    
 
     private void Start()
