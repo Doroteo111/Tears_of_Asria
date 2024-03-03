@@ -16,6 +16,9 @@ public class NPC : MonoBehaviour
     public float textSpeed;
     private int index;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip clickSound;
+
     [Header("REFERENCE")]
     public Player _player;
     public string[] lines;
@@ -25,7 +28,7 @@ public class NPC : MonoBehaviour
         panelNPCdialogue.SetActive(false);
 
         dialogueText.text = string.Empty;
-        StartDialogue();
+        
         nextLineButton.onClick.AddListener(ButtonNextLine);
 
     }
@@ -33,6 +36,7 @@ public class NPC : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T) && playerIsTalkingNPC)
         {
+            StartDialogue();
             panelNPCdialogue.SetActive(true);
             HideAppearText();
             playerIsTalkingNPC = true;
@@ -65,6 +69,7 @@ public class NPC : MonoBehaviour
 
     private void ButtonNextLine()
     {
+        SoundManager.instance.PlaySound(clickSound);
         //Pass to the next line and if you press again autocomplete the sentence 
         if (dialogueText.text == lines[index])
         {

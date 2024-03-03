@@ -18,6 +18,9 @@ public class DialogueTextAsria : MonoBehaviour
     [Header("REFERENCE")]
     public string[] lines;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip clickSound;
+
     private void Start()
     {
         dialogueText.text = string.Empty; 
@@ -29,6 +32,7 @@ public class DialogueTextAsria : MonoBehaviour
    
     private void ButtonNextLine() 
     {
+        SoundManager.instance.PlaySound(clickSound);
         //Pass to the next line and if you press again autocomplete the sentence 
         if (dialogueText.text == lines[index])
         {

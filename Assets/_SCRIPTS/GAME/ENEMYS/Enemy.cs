@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 
     [Header(" Shooting Parameters")]
     private float enemyDamage = 1;
+
     //the position of the empty object, the point where the bullet instantiate
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform controllerProjectile;
@@ -19,29 +20,27 @@ public class Enemy : MonoBehaviour
 
    
     private GameObject _player;
-    private DetectPlayerCollider _detectPlayerCollider;
 
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-      //  _detectPlayerCollider = FindObjectOfType<DetectPlayerCollider>().detectedPlayer;
     }
 
     private void Update()
     {
-        //float distance = Vector2.Distance(transform.position, _player.transform.position);
+      float distance = Vector2.Distance(transform.position, _player.transform.position);
         //every frame this float will represent the distance between enemy-player
-        /*
-        if(_detectPlayerCollider.detectedPlayer == true)
-        {
-            timer += Time.deltaTime;
 
-            if (timer > 2)
+        if(distance < 8)
+        {
+            
+
+            if (timer > 1.5)
             {
-                timer = 0; //every 2 second --> reset
+                timer = 0; //every 1.5 second --> reset
                 Shoot();
             }
-        }*/
+        }
     }
 
    private void Shoot()

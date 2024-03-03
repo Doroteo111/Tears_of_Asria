@@ -203,7 +203,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &144266069
 RectTransform:
@@ -219,7 +219,6 @@ RectTransform:
   m_Children:
   - {fileID: 301411304}
   - {fileID: 1983479505}
-  - {fileID: 426082826}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -376,7 +375,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 144266069}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1539042365542005987, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_Name
@@ -392,11 +391,11 @@ PrefabInstance:
       objectReference: {fileID: 426082827}
     - target: {fileID: 2943200195457564107, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1920
+      value: -960
       objectReference: {fileID: 0}
     - target: {fileID: 2943200195457564107, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1080
+      value: -540
       objectReference: {fileID: 0}
     - target: {fileID: 2943200195457564107, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_LocalPosition.z
@@ -432,62 +431,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7600073804557465343, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1080
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
---- !u!4 &426082826 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2943200195457564107, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
-  m_PrefabInstance: {fileID: 426082825}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &426082827 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2274710172843665157, guid: 79e93949e5b304746bcc29aebeda9076, type: 3}
@@ -504,6 +498,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2677a0a3b0629294598af233baa3d1f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &454443924
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4202474651178731167, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_Volume
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4202474651178731167, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2520148b61d6f42b4e205c7f30f508, type: 3}
+    - target: {fileID: 7690469700985440621, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690469700985440621, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690469700985440621, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690469700985440621, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690469700985440621, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690469700985440621, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690469700985440621, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690469700985440621, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690469700985440621, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690469700985440621, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935620547485000159, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_Name
+      value: SoundManager=====
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
 --- !u!1 &880320725
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -36.070007, y: -72.25}
+  m_AnchoredPosition: {x: -28.599976, y: -91.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1241296498
@@ -989,11 +1048,17 @@ MonoBehaviour:
   nextLineButton: {fileID: 1241296498}
   textSpeed: 0.1
   lines:
-  - ..............
-  - "hola, no se que poner as\xED que rellenare con tonterias"
-  - illojuan mason
-  - "cuando termine esto la viciada al steam ser\xE1 historica"
-  - nanit :-)
+  - ' . . . . . . . . . . '
+  - Oh, dear brought traveller from the underground . . .
+  - 'Do not fear me, as I am the divine fairy that gave the lights to the underground
+    kingdom from where you belong. I am the final symphony from the old and now deceased
+    gold moon that used to be the brightest light of them all. '
+  - 'I decided to proclaim you as the chosen one who shall bring me the "five lost
+    fragments" that have been last seen in the most deep caves of Ladoria. '
+  - When you reunite and reassemble all of them, set foot into my temple where my
+    soul rests. I will await for you with passion, chosen one.
+  - I believe in you.
+  clickSound: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
 --- !u!1 &2085837792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,6 +1200,8 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 426082825}
   - {fileID: 2085837795}
   - {fileID: 144266069}
   - {fileID: 185519863}
+  - {fileID: 454443924}

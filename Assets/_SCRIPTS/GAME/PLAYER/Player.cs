@@ -10,8 +10,10 @@ public class Player : MonoBehaviour
     public DataPersistence _dataPersistence;
     public string nextPoint;
 
+    [Header("Sounds")]
     [SerializeField] private AudioClip projectileSound;
     [SerializeField] private AudioClip collectableSound;
+
     [Header ("LAYERS")] //collider
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private LayerMask collectablesLayerMask;
@@ -32,7 +34,7 @@ public class Player : MonoBehaviour
     //the position of the empty object, the point where the bullet instantiate
     [SerializeField] private Transform controllerProjectile; 
     [SerializeField] private GameObject magicProjectile; //sprite G.O
-    
+
     [Header("MOVMENT")]
     private float moveSpeed = 6f;
     private float jumpSpeed = 10f;
@@ -116,9 +118,7 @@ public class Player : MonoBehaviour
         //SHOOT PROJECTILE
         if (Input.GetMouseButtonDown(1))  //Pressed rigth-click
         {
-            
-            //disparo
-            ShootMagicProjectile();
+          ShootMagicProjectile();
         }
     }
 

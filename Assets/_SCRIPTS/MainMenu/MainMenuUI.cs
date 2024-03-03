@@ -26,6 +26,9 @@ public class MainMenuUI : MonoBehaviour
     [Header("Quit Button")]
     [SerializeField] private Button quitButton;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip clickSound;
+
     private void Awake()
     {
 
@@ -55,12 +58,14 @@ public class MainMenuUI : MonoBehaviour
     {
         //Read from other script, first a transition, then change the scene
         TransitionScene.LoadNextSceneSpeech();
+        SoundManager.instance.PlaySound(clickSound);
     }
     //We show and hide the panels with an animation and disable the buttons to avoid mess
     //in order to obligate the player to close the menu to open another or interact with a button
     private void ShowControlsPanel()
     {
         anim_ControlsPanel.SetBool(IS_OPEN_PARAM, true);
+        SoundManager.instance.PlaySound(clickSound);
         optionButton.interactable = false;
         quitButton.interactable = false;
         playButton.interactable = false;
@@ -69,6 +74,7 @@ public class MainMenuUI : MonoBehaviour
     private void HideControlsPanel()
     {
         anim_ControlsPanel.SetBool(IS_OPEN_PARAM, false);
+        SoundManager.instance.PlaySound(clickSound);
         optionButton.interactable = true;
         quitButton.interactable = true;
         playButton.interactable = true;
@@ -77,6 +83,7 @@ public class MainMenuUI : MonoBehaviour
     private void ShowOptionsPanel()
     {
         anim_OptionsPanel.SetBool(IS_OPEN_PARAM, true);
+        SoundManager.instance.PlaySound(clickSound);
         controlsButton.interactable = false;
         quitButton.interactable = false;
         playButton.interactable = false;
@@ -84,6 +91,7 @@ public class MainMenuUI : MonoBehaviour
     private void HideOptionsPanel()
     {
         anim_OptionsPanel.SetBool(IS_OPEN_PARAM, false);
+        SoundManager.instance.PlaySound(clickSound);
         controlsButton.interactable = true;
         quitButton.interactable = true;
         playButton.interactable = true;
