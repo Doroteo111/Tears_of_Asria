@@ -31,7 +31,8 @@ public class DoorYellow : MonoBehaviour
 
 
                 //Read from other script, first a transition, then change the scene
-                TransitionScene.LoadNextSceneYellowDoor();
+                //TransitionScene.LoadNextSceneYellowDoor();
+                Loader.Load(Loader.Scene.YellowDoor);
 
             }
             else
@@ -49,7 +50,7 @@ public class DoorYellow : MonoBehaviour
 
         if (collision.CompareTag("Player") == true)
         {
-            _dataPersistence.LoadJson(); //load to confirm if you have the key
+           // _dataPersistence.LoadJson(); //load to confirm if you have the key
             Debug.Log("estoy dentro");
         }
 

@@ -104,8 +104,22 @@ public class TransitionSceneLoader : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
 
-        Loader.Load(Loader.Scene.BlueDoor);
+        Loader.Load(Loader.Scene.EndGame);
     }
 
-   
+    // LOAD END GAME SCENE --> CREDITS SCENE
+    public void LoadNextSceneCredits()
+    {
+        StartCoroutine(LoadTransCredits());
+    }
+    IEnumerator LoadTransCredits()
+    {
+        //play animation
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+
+        Loader.Load(Loader.Scene.Credits);
+    }
+
+
 }

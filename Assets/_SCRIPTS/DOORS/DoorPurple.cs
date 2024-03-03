@@ -32,7 +32,8 @@ public class DoorPurple : MonoBehaviour
 
 
                 //Read from other script, first a transition, then change the scene
-                TransitionScene.LoadNextScenePurpleDoor();
+                //TransitionScene.LoadNextScenePurpleDoor();
+                Loader.Load(Loader.Scene.PurpleDoor);
 
             }
             else
@@ -50,7 +51,7 @@ public class DoorPurple : MonoBehaviour
 
         if (collision.CompareTag("Player") == true)
         {
-            _dataPersistence.LoadJson(); //load to confirm if you have the key
+           // _dataPersistence.LoadJson(); //load to confirm if you have the key
             Debug.Log("estoy dentro");
         }
 

@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public int totalGems;
     public TextMeshProUGUI totalGemsText;
 
+    [SerializeField] private Image dashcapeImage;
     //all the ImageKeys
     [SerializeField] private Image keyBlueImage,keyYellowImage,keyPurpleImage,keyPinkImage;
     public bool hasBlueKey;
@@ -87,7 +88,8 @@ public class Player : MonoBehaviour
         hasPurpleKey = false;
         hasPinkKey  = false;
 
-        //hearts images
+        //Dash images
+        dashcapeImage.enabled = false;
 
         //Dash boolean --> I can't dash until I get the special object
        iCanDash = false;
@@ -112,7 +114,6 @@ public class Player : MonoBehaviour
             //isJumping = true;
             
             _rigidbody2D.velocity = Vector2.up * jumpSpeed;
-          
         }
 
         //SHOOT PROJECTILE
@@ -128,6 +129,8 @@ public class Player : MonoBehaviour
         {
             isWalking = _rigidbody2D.velocity.x != 0; // is walking = true when greater to 0
             _rigidbody2D.velocity = new Vector2(horizontalInput * moveSpeed, _rigidbody2D.velocity.y);
+
+          
         }
       
         
@@ -188,6 +191,7 @@ public class Player : MonoBehaviour
         SoundManager.instance.PlaySound(collectableSound);
         Destroy(other.gameObject);
         iCanDash = true;
+        dashcapeImage.enabled = true;
         //_audioSource.PlayOneShot(collectables);
         //interface update sprite cape
     }
@@ -199,9 +203,14 @@ public class Player : MonoBehaviour
     public void SetDashCape(bool dataJson)
     {
         iCanDash=dataJson;
+        if (dataJson)
+        {
+            dashcapeImage.enabled = true;
+        }
     }
     private void CollectGems(Collider2D other) //need to collect all 5 to complete the game
     {
+        SoundManager.instance.PlaySound(collectableSound);
         Destroy(other.gameObject);
         totalGems++;
         totalGemsText.text = $"{totalGems}/5";
@@ -224,6 +233,7 @@ public class Player : MonoBehaviour
     #region -->> KEYS LOGIC <<--
     private void CollectBlueKey(Collider2D other)
     {
+        SoundManager.instance.PlaySound(collectableSound);
         Destroy(other.gameObject);
         keyBlueImage.enabled = true;
         
@@ -243,6 +253,7 @@ public class Player : MonoBehaviour
     }
     private void CollectYellowKey(Collider2D other)
     {
+        SoundManager.instance.PlaySound(collectableSound);
         Destroy(other.gameObject);
         keyYellowImage.enabled = true;
 
@@ -263,6 +274,7 @@ public class Player : MonoBehaviour
     }
     private void CollectPinkKey(Collider2D other)
     {
+        SoundManager.instance.PlaySound(collectableSound);
         Destroy(other.gameObject);
         keyPinkImage.enabled = true;
 
@@ -283,6 +295,7 @@ public class Player : MonoBehaviour
     }
     private void CollectPurpleKey(Collider2D other)
     {
+        SoundManager.instance.PlaySound(collectableSound);
         Destroy(other.gameObject);
         keyPurpleImage.enabled = true;
 

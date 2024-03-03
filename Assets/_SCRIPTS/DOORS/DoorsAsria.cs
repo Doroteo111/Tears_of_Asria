@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DoorsAsria : MonoBehaviour
 {
+    [Header("REFERENCE")]
     public DataPersistence _dataPersistence;
     public Player _player;
     public TransitionSceneLoader TransitionScene;
-    public bool playerIsClose;
+
+    public string exitPoint;
 
     [Header("UI VARIABLES")]
     [SerializeField] private GameObject infoTextA;
+    public bool playerIsClose;
 
     private void Start()
     {
@@ -23,10 +27,11 @@ public class DoorsAsria : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose == true)
         {
-            if (_player.totalGems == 5)
+            if (_player.totalGems >= 5)
             {
                 //Read from other script, first a transition, then change the scene
-                TransitionScene.LoadNextSceneEndGame();
+                //TransitionScene.LoadNextSceneEndGame();
+               Loader.Load(Loader.Scene.EndGame);
             }
             else
             {
@@ -41,7 +46,7 @@ public class DoorsAsria : MonoBehaviour
 
         if (collision.CompareTag("Player") == true)
         {
-            _dataPersistence.LoadJson();
+           // _dataPersistence.LoadJson();
             Debug.Log("estoy dentro puerta asria");
         }
 

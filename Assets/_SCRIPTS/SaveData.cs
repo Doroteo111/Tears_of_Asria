@@ -4,9 +4,6 @@ public class SaveData
 {
     // all the information I want to save
 
-    //positions for  the respawn from keys
-    public Vector3 respawnKeyPosition;  //save teh last position 
-
     //amoutn of keys
     public bool hasBlueKey;
     public bool hasYellowKey;
@@ -17,7 +14,7 @@ public class SaveData
     public int gems;
 
     //My health bar
-    public int myCurrentLife;
+    public float currentHealth;
 
     //Dash cape
     public bool iCanDash;

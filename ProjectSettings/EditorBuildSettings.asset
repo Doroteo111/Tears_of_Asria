@@ -32,10 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DOORS/YellowDoor.unity
     guid: 84f98e0df17e4c64a8ce1a4903dbc86b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PRUEBA UUID/Test1.unity
     guid: 14717cab6ea4e3d47852bf471647ac5b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PRUEBA UUID/Test2.unity
     guid: 9db42509fc512374084d25df4cb2f616
   m_configObjects: {}

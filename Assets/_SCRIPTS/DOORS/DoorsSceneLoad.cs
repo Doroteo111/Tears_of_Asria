@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class DoorsSceneLoad : MonoBehaviour
 {
-    public DataPersistence _dataPersistence;
+    private DataPersistence _dataPersistence;
 
+    private void Start()
+    {
+        _dataPersistence = FindObjectOfType<DataPersistence>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _dataPersistence.LoadJson();

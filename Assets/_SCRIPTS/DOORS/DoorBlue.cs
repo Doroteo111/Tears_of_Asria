@@ -31,7 +31,8 @@ public class DoorBlue : MonoBehaviour
             {
                 Debug.Log("you have the key");
                 //Read from other script, first a transition, then change the scene
-                TransitionScene.LoadNextSceneBlueDoor();
+                // TransitionScene.LoadNextSceneBlueDoor();
+                Loader.Load(Loader.Scene.BlueDoor);
 
             }
             else
@@ -49,7 +50,7 @@ public class DoorBlue : MonoBehaviour
 
         if(collision.CompareTag("Player") == true )
         {
-            _dataPersistence.LoadJson(); //load to confirm if you have the key
+           // _dataPersistence.LoadJson(); //load to confirm if you have the key
             Debug.Log("estoy dentro");
         }
 

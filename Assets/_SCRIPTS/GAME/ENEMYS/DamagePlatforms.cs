@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class DamagePlatforms : MonoBehaviour
 {
-    [SerializeField] private float platformDamage;
-    
+     private float platformDamage = 1f;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioClip hitSound;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(platformDamage);
+            SoundManager.instance.PlaySound(hitSound);
         }
     }
 }

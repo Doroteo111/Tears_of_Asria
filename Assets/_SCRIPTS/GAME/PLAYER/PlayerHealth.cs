@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private DataPersistence _dataPersistence;
+    private HealthBar _healthBar;
+
     [Header(" BASIC VARAIABLE")]
     [SerializeField] private float startingHealth;//Amount of health the player has in the start
     public float currentHealth { get; private set; }
@@ -20,10 +23,12 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         currentHealth = startingHealth;
-
+        dead = false;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _player = FindObjectOfType<Player>();
         _animator = GetComponent<Animator>();
+        _dataPersistence = FindObjectOfType<DataPersistence>();
+        _healthBar = FindObjectOfType<HealthBar>();
     }
     public void TakeDamage(float _damage)
     {
@@ -35,19 +40,26 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth > 0)
         {
+            _dataPersistence.SaveJson(); //(safe)
             Debug.Log("DAÑO");
             StartCoroutine(Invunerability());
         }
         else
-        {
-            if (!dead)
-            {
-                //añadir noseque de los componentes supongo que sale en el video del enemigo
-                _animator.SetTrigger("Die");
-                dead = true;
-            }
+        { 
+            
+            dead = true;
+            _animator.SetTrigger("Die"); 
         }
          
+    }
+    public float GetCurrentHealth() //for data persistence (safe)
+    {
+        return currentHealth;
+    }
+
+    public void SetCurrentHealth(float dataJson) //(load)
+    {
+        currentHealth = dataJson;
     }
     public void Respawn()
     {

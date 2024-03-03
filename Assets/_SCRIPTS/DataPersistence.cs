@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class DataPersistence : MonoBehaviour
 {
-    [SerializeField] private Player player; //get acces to the player'script
+    private Player player; //get acces to the player'script
+    private PlayerHealth playerHealth;
 
     private const string SAVE_FILE_PATH = "/save.json";
+
+    private void Start()
+    {
+        player = FindObjectOfType<Player>();
+        playerHealth = FindObjectOfType<PlayerHealth>();
+    }
 
     private void Update()
     {
@@ -24,17 +31,19 @@ public class DataPersistence : MonoBehaviour
         bool hasPurpleKey=player.GetPurpleKey();
         bool hasPinkKey=player.GetPinkKey();
         bool iCanDash=player.GetDashCape();
+        float currentHealth = playerHealth.GetCurrentHealth();
 
         SaveData saveData = new SaveData
         {
             gems = totalGems,
             hasBlueKey = hasBlueKey,
-            hasYellowKey= hasYellowKey,
-            hasPurpleKey= hasPurpleKey,
+            hasYellowKey = hasYellowKey,
+            hasPurpleKey = hasPurpleKey,
             hasPinkKey = hasPinkKey,
-            iCanDash=iCanDash,
+            iCanDash = iCanDash,
+            currentHealth = currentHealth
 
-            
+
         };
 
         string savedDataJson=JsonUtility.ToJson(saveData); //the jsonification 
@@ -58,6 +67,7 @@ public class DataPersistence : MonoBehaviour
             player.SetYellowKey(saveData.hasYellowKey);
             player.SetPinkKey(saveData.hasPinkKey);
             player.SetPurpleKey(saveData.hasPurpleKey);
+            playerHealth.SetCurrentHealth(saveData.currentHealth);
         }
         else
         {

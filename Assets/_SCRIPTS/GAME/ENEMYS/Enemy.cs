@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
         {
             
 
-            if (timer > 1.5)
+            if (timer > 1)
             {
                 timer = 0; //every 1.5 second --> reset
                 Shoot();

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class DoorPink : MonoBehaviour
 {
@@ -30,7 +32,9 @@ public class DoorPink : MonoBehaviour
 
 
                 //Read from other script, first a transition, then change the scene
-                TransitionScene.LoadNextScenePinkDoor();
+                //error here, entoria uso TransitionScene.LoadNextScenePinkDoor(); pero me da error, me lleva al amarillo, auqnue yo lo asigne a la escena que toca
+                // TransitionScene.LoadNextScenePinkDoor();
+                Loader.Load(Loader.Scene.PinkDoor);
 
             }
             else
@@ -48,7 +52,7 @@ public class DoorPink : MonoBehaviour
 
         if (collision.CompareTag("Player") == true)
         {
-            _dataPersistence.LoadJson(); //load to confirm if you have the key
+           // _dataPersistence.LoadJson(); //load to confirm if you have the key
             Debug.Log("estoy dentro");
         }
 

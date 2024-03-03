@@ -5,13 +5,13 @@ using UnityEngine;
 public class ExitPoint : MonoBehaviour
 {
     [Header("REFERENCE")]
-    public Player _player;
+    private Player _player;
 
     public string lastExitPoint;
 
     void Start()
     {
-       // _player = FindAnyObjectByType<Player>();
+       _player = FindAnyObjectByType<Player>();
         if (PlayerPrefs.GetString("LastExitPoint")== lastExitPoint)
         {
             _player.transform.position = this.transform.position;

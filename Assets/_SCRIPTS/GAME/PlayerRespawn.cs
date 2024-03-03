@@ -9,18 +9,18 @@ public class PlayerRespawn : MonoBehaviour
     private Transform currentLastCheckPoint; // store our last checkpoint
     private PlayerHealth _playerHealth; //reset the player health
 
-    public GameObject cirlceCheckpointOn;
+    private Animator _animator;
+    //animacion sprite cambiar de color
 
     private void Awake()
     {
         _playerHealth = GetComponent<PlayerHealth>();
-        cirlceCheckpointOn.SetActive(false);
+        _animator = GetComponent<Animator>();
     }
 
     public void Respawn()
     {
         transform.position = currentLastCheckPoint.position; //move player to checkpoint position
-        cirlceCheckpointOn.SetActive(false);
         _playerHealth.Respawn();
     }
 
@@ -30,11 +30,10 @@ public class PlayerRespawn : MonoBehaviour
         if(collision.transform.tag == "Checkpoint")
         {
             Debug.Log("CHECKPOINT");
-            cirlceCheckpointOn.SetActive(true);//change color --> like "activation"
             currentLastCheckPoint = collision.transform; //store the checkpoint that we activated as the current one
             SoundManager.instance.PlaySound(checkpointSound);
             collision.GetComponent<Collider2D>().enabled = false; //desactivate checkpoint collider
-            
+            collision.GetComponent<Animator>().SetTrigger("Activated");
 
         }
     }
