@@ -17,6 +17,10 @@ public class DoorPink : MonoBehaviour
     public string exitPoint;
     public bool playerIsClose;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip doorSound;
+
+
     private void Start()
     {
         HideAppearText();
@@ -32,8 +36,9 @@ public class DoorPink : MonoBehaviour
 
 
                 //Read from other script, first a transition, then change the scene
-                //error here, entoria uso TransitionScene.LoadNextScenePinkDoor(); pero me da error, me lleva al amarillo, auqnue yo lo asigne a la escena que toca
+                //error here, I normally use TransitionScene.LoadNextScenePinkDoor(); but it takes me the wrong scene, although I have assigned it the right scene
                 // TransitionScene.LoadNextScenePinkDoor();
+                SoundManager.instance.PlaySound(doorSound);
                 Loader.Load(Loader.Scene.PinkDoor);
 
             }

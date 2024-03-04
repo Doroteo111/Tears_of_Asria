@@ -15,6 +15,9 @@ public class DoorBlue : MonoBehaviour
     [SerializeField] private GameObject infoText;
 
    public string exitPoint;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioClip doorSound;
  
 
     private void Start()
@@ -31,7 +34,9 @@ public class DoorBlue : MonoBehaviour
             {
                 Debug.Log("you have the key");
                 //Read from other script, first a transition, then change the scene
+                //error here, I normally use TransitionScene.LoadNextScenePinkDoor(); but it takes me the wrong scene, although I have assigned it the right scene
                 // TransitionScene.LoadNextSceneBlueDoor();
+                SoundManager.instance.PlaySound(doorSound);
                 Loader.Load(Loader.Scene.BlueDoor);
 
             }

@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthValue: 1
+  collectableSound: {fileID: 8300000, guid: 657578e4be6b64dbf9b09deada272e55, type: 3}
 --- !u!1 &8974226098070583225
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,9 @@ public class DoorYellow : MonoBehaviour
     [Header("UI VARIABLES")]
     [SerializeField] private GameObject infoText;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip doorSound;
+
     public string exitPoint;
 
 
@@ -31,7 +34,9 @@ public class DoorYellow : MonoBehaviour
 
 
                 //Read from other script, first a transition, then change the scene
+                //error here, I normally use TransitionScene.LoadNextScenePinkDoor(); but it takes me the wrong scene, although I have assigned it the right scene
                 //TransitionScene.LoadNextSceneYellowDoor();
+                SoundManager.instance.PlaySound(doorSound);
                 Loader.Load(Loader.Scene.YellowDoor);
 
             }

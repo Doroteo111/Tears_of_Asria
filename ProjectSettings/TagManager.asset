@@ -39,7 +39,7 @@ TagManager:
   - ColliderNPC
   - Walls
   - EnemyProjectile
-  - 
+  - background
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
   - name: background
     uniqueID: 102220077
     locked: 0
+  - name: Foreground (buildings)
+    uniqueID: 3989580379
+    locked: 0
   - name: Collider_layer
     uniqueID: 2933366795
     locked: 0
@@ -66,4 +69,10 @@ TagManager:
     locked: 0
   - name: Collectables
     uniqueID: 855530613
+    locked: 0
+  - name: platforms_deco
+    uniqueID: 1885981077
+    locked: 0
+  - name: details
+    uniqueID: 2923563725
     locked: 0

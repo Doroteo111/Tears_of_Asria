@@ -18,6 +18,9 @@ public class DoorsAsria : MonoBehaviour
     [SerializeField] private GameObject infoTextA;
     public bool playerIsClose;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip doorSound;
+
     private void Start()
     {
         HideAppearText();
@@ -30,8 +33,10 @@ public class DoorsAsria : MonoBehaviour
             if (_player.totalGems >= 5)
             {
                 //Read from other script, first a transition, then change the scene
+                //error here, I normally use TransitionScene.LoadNextScenePinkDoor(); but it takes me the wrong scene, although I have assigned it the right scene
                 //TransitionScene.LoadNextSceneEndGame();
-               Loader.Load(Loader.Scene.EndGame);
+                SoundManager.instance.PlaySound(doorSound);
+                Loader.Load(Loader.Scene.EndGame);
             }
             else
             {

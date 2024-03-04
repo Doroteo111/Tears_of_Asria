@@ -18,4 +18,5 @@ public class SaveData
 
     //Dash cape
     public bool iCanDash;
+
 }

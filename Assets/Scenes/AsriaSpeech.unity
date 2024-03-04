@@ -351,7 +351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 91f51af9e51ca2d45b691a82fdaf6f07, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aeb511bd33cb92a4dafbb93d546b5034, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -506,9 +506,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 740895367263367270, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4202474651178731167, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
       propertyPath: m_Volume
-      value: 0.17
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4202474651178731167, guid: 5eda4a82af2f9b747a3d99cbc820991d, type: 3}
       propertyPath: m_audioClip
@@ -1005,7 +1009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.13960321, b: 0.89411765, a: 0.85882354}
+  m_Color: {r: 0.26059094, g: 0.36244392, b: 0.9056604, a: 0.7176471}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
