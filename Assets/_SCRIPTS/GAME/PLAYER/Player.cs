@@ -111,8 +111,7 @@ public class Player : MonoBehaviour
         // JUMP
         if (Input.GetKeyDown(KeyCode.Space) && IsOnTheGround())
         {
-            //isJumping = true;
-            
+           
             _rigidbody2D.velocity = Vector2.up * jumpSpeed;
         }
 
@@ -192,8 +191,6 @@ public class Player : MonoBehaviour
         Destroy(other.gameObject);
         iCanDash = true;
         dashcapeImage.enabled = true;
-        //_audioSource.PlayOneShot(collectables);
-        //interface update sprite cape
     }
     public bool GetDashCape()
     {
@@ -214,7 +211,6 @@ public class Player : MonoBehaviour
         Destroy(other.gameObject);
         totalGems++;
         totalGemsText.text = $"{totalGems}/5";
-        // _audioSource.PlayOneShot(collectables[1]);
 
     }
     public int GetTotalGems() //for data persistence (safe)

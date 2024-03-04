@@ -10,7 +10,7 @@ public class DoorsSceneLoad : MonoBehaviour
     {
         _dataPersistence = FindObjectOfType<DataPersistence>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //load
     {
         _dataPersistence.LoadJson();
     }

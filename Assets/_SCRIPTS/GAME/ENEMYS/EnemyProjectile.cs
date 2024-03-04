@@ -30,7 +30,6 @@ public class EnemyProjectile : MonoBehaviour
         if (other.gameObject.tag.Equals("Player"))
         {
             other.GetComponent<PlayerHealth>().TakeDamage(1);
-            Debug.Log("PLAYER DETECTED");
             Destroy(gameObject);
         }
 

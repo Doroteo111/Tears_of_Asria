@@ -40,7 +40,7 @@ public class DoorsAsria : MonoBehaviour
             }
             else
             {
-                Debug.Log("no tienes todos los fragmentos, no puedes pasar");
+                Debug.Log("you don't have the 5 fragments");
             }
         }
     }
@@ -51,15 +51,13 @@ public class DoorsAsria : MonoBehaviour
 
         if (collision.CompareTag("Player") == true)
         {
-           // _dataPersistence.LoadJson();
-            Debug.Log("estoy dentro puerta asria");
+            // _dataPersistence.LoadJson(); ( I changed what I did because I think it gave me an error. This line is in a game empty )
         }
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("estoy fuera");
         HideAppearText();
     }
 

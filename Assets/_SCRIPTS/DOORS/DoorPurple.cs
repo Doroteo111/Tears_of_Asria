@@ -45,7 +45,6 @@ public class DoorPurple : MonoBehaviour
             else
             {
                 Debug.Log("you dont have the key");
-                //add ui text
             }
         }
     }
@@ -57,15 +56,13 @@ public class DoorPurple : MonoBehaviour
 
         if (collision.CompareTag("Player") == true)
         {
-           // _dataPersistence.LoadJson(); //load to confirm if you have the key
-            Debug.Log("estoy dentro");
+            // _dataPersistence.LoadJson(); //load to confirm if you have the key ( I changed what I did because I think it gave me an error. This line is in a game empty )
         }
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("estoy fuera");
         HideAppearText();
     }
 

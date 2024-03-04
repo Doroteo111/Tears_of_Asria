@@ -41,7 +41,6 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth > 0)
         {
             _dataPersistence.SaveJson(); //(safe)
-            Debug.Log("DAÑO");
             StartCoroutine(Invunerability());
         }
         else

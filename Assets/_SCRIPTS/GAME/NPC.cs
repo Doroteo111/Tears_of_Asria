@@ -56,13 +56,13 @@ public class NPC : MonoBehaviour
         playerIsTalkingNPC = true;
         if (collision.CompareTag("Player") == true)
         {
-            Debug.Log("estoy con el NPC");
+            Debug.Log("Im with NPC");
         }
     }
     //When the player its outside the collider
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("estoy fuera");
+        Debug.Log("im out");
        panelNPCdialogue.SetActive(false) ;
         HideAppearText();
     }

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    [Header(" Volume slider")]
-    private Slider _volumeSlider; //save general volume via slider main menu
+    //[Header(" Volume slider")]
+   // private Slider _volumeSlider; //save general volume via slider main menu
     public static SoundManager instance { get; private set; }//acess from other script but changed it only in this one
     private AudioSource source;
 
@@ -14,12 +14,12 @@ public class SoundManager : MonoBehaviour
     {
         instance = this;
         source = GetComponent<AudioSource>();
-        _volumeSlider = GetComponent<Slider>();
+       // _volumeSlider = GetComponent<Slider>();
     }
 
     private void Start()
     {
-        if (!PlayerPrefs.HasKey("musicVolume"))
+        /*if (!PlayerPrefs.HasKey("musicVolume"))
         {
             PlayerPrefs.SetFloat("musicVolume", 1);
             SetVolume();
@@ -27,12 +27,13 @@ public class SoundManager : MonoBehaviour
         else
         {
             SetVolume();
-        }
+        }*/
     }
     public void PlaySound(AudioClip _sound)
     {
         source.PlayOneShot(_sound); //for sound effect /plays one time
     }
+   /*
     public void ChangeVolume()
     {
         AudioListener.volume = _volumeSlider.value;
@@ -48,4 +49,5 @@ public class SoundManager : MonoBehaviour
     {
         _volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
     }
+   */
 }
