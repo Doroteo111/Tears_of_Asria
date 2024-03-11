@@ -16,11 +16,6 @@ public class DataPersistence : MonoBehaviour
         playerHealth = FindObjectOfType<PlayerHealth>();
     }
 
-    private void Update()
-    {
-       
-    }
-
     public void SaveJson() 
     {
         Debug.Log("Saved with JSON");

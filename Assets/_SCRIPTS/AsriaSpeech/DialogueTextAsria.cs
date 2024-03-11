@@ -28,8 +28,6 @@ public class DialogueTextAsria : MonoBehaviour
 
         nextLineButton.onClick.AddListener(ButtonNextLine);
     }
-
-   
     private void ButtonNextLine() 
     {
         SoundManager.instance.PlaySound(clickSound);
@@ -59,7 +57,6 @@ public class DialogueTextAsria : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
     }
-
     private void NextLine()
     {
         if(index < lines.Length - 1)
